@@ -9,9 +9,12 @@ import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
@@ -22,6 +25,7 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafxSet.FXMLSetDadosController;
+import javafxlogin.FXMLLoginController;
 
 /**
  *
@@ -47,6 +51,73 @@ public class FXMLFutebolController implements Initializable {
     private Label lCronometro;
     @FXML
     public ImageView ivFundo;
+    
+    //botões clientes
+    @FXML
+    public Button bmaisgolA;
+    @FXML
+    public Button bmenosgolA;
+    @FXML
+    public Button bmaisgolB;
+    @FXML
+    public Button bmenosgolB;
+    @FXML
+    public Button bmaisfaltasA;
+    @FXML
+    public Button bmenosfaltasA;
+    @FXML
+    public Button bmaisfaltasB;
+    @FXML
+    public Button bmenosfaltasB;
+    @FXML
+    public Button bmaisamareloA;
+    @FXML
+    public Button bmaisvermelhoA;
+    @FXML
+    public Button bmenosvermelhoA;
+    @FXML
+    public Button bmenosamareloA;
+    @FXML
+    public Button bmaisamareloB;
+    @FXML
+    public Button bmaisvermelhoB;
+    @FXML
+    public Button bmenosvermelhoB;
+    @FXML
+    public Button bmenosamareloB;
+    @FXML
+    public Button bmaisperiodo;
+    @FXML
+    public Button bmenosperiodo;
+    
+    private static FXMLLoginController lc;
+
+    
+    protected static BooleanProperty v = new SimpleBooleanProperty();
+    
+    //recebe o tipo de usuario
+    //se for admin seta false na visible dos botoes abaixo
+    //se for cliente seta true na visible doa botoes abaixo
+    public void cliente(String user){
+        v.setValue(false);
+        System.out.println(user);
+        if(user.contains("cliente")){
+            
+            v.setValue(true);
+        }
+        //seta visibilidade dos botoes
+    bmaisgolA.visibleProperty().bindBidirectional(v);
+    bmenosgolA.visibleProperty().bindBidirectional(v);
+    bmaisfaltasA.visibleProperty().bindBidirectional(v);
+    bmenosfaltasA.visibleProperty().bindBidirectional(v);
+    bmaisgolB.visibleProperty().bindBidirectional(v);
+    bmenosgolB.visibleProperty().bindBidirectional(v);
+    bmaisfaltasB.visibleProperty().bindBidirectional(v);
+    bmenosfaltasB.visibleProperty().bindBidirectional(v);
+    bmaisperiodo.visibleProperty().bindBidirectional(v);
+    bmenosperiodo.visibleProperty().bindBidirectional(v);
+    }
+    
 
     private static File file = new File("src/videos/Propaganda.mp4");
     private static final String mediaurl = file.toURI().toString();

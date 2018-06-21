@@ -9,9 +9,12 @@ import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
@@ -20,6 +23,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
+import javafxlogin.FXMLLoginController;
 
 /**
  *
@@ -27,6 +31,7 @@ import javafx.scene.media.MediaView;
  */
 public class FXMLBasquetebolController implements Initializable {
 
+    //Botões e Labels padrão.
     @FXML
     private AnchorPane apBasquete;
     @FXML
@@ -53,6 +58,81 @@ public class FXMLBasquetebolController implements Initializable {
     private ImageView ivTimeA;
     @FXML
     private ImageView ivTimeB;
+    
+    //Botões e Labels do Cliente
+    @FXML
+    private Button bplaycron;
+    @FXML
+    private Button bstopcron;
+    @FXML
+    private Button bplayshot;
+    @FXML
+    private Button bstopshot;
+    @FXML
+    private Button bmaispontosA;
+    @FXML
+    private Button bmenospontosA;
+    @FXML
+    private Button bmaisfaltasA;
+    @FXML
+    private Button bmenosfaltasA;
+    @FXML
+    private Label lmaispontosA;
+    @FXML
+    private Label lmenospontosA;
+    @FXML
+    private Label lmaispontosB;
+    @FXML
+    private Label lmenospontosB;
+    @FXML
+    private Button bmaispontosB;
+    @FXML
+    private Button bmenospontosB;
+    @FXML
+    private Button bmaisfaltasB;
+    @FXML
+    private Button bmenosfaltasB;
+    @FXML
+    private Button bmaisperiodo;
+    @FXML
+    private Button bmenosperiodo;
+    
+    private static FXMLLoginController lc;
+
+    
+    protected static BooleanProperty v = new SimpleBooleanProperty();
+    
+    //recebe o tipo de usuario
+    //se for admin seta false na visible dos botoes abaixo
+    //se for cliente seta true na visible doa botoes abaixo
+    public void cliente(String user){
+        v.setValue(false);
+        System.out.println(user);
+        if(user.contains("cliente")){
+            
+            v.setValue(true);
+        }
+        //seta visibilidade dos botoes
+    bplaycron.visibleProperty().bindBidirectional(v);
+    bstopcron.visibleProperty().bindBidirectional(v);
+    bplayshot.visibleProperty().bindBidirectional(v);
+    bstopshot.visibleProperty().bindBidirectional(v);
+    bmaispontosA.visibleProperty().bindBidirectional(v);
+    bmenospontosA.visibleProperty().bindBidirectional(v);
+    bmaisfaltasA.visibleProperty().bindBidirectional(v);
+    bmenosfaltasA.visibleProperty().bindBidirectional(v);
+    lmaispontosA.visibleProperty().bindBidirectional(v);
+    lmenospontosA.visibleProperty().bindBidirectional(v);
+    lmaispontosB.visibleProperty().bindBidirectional(v);
+    lmenospontosB.visibleProperty().bindBidirectional(v);
+    bmaispontosB.visibleProperty().bindBidirectional(v);
+    bmenospontosB.visibleProperty().bindBidirectional(v);
+    bmaisfaltasB.visibleProperty().bindBidirectional(v);
+    bmenosfaltasB.visibleProperty().bindBidirectional(v);
+    bmaisperiodo.visibleProperty().bindBidirectional(v);
+    bmenosperiodo.visibleProperty().bindBidirectional(v);
+    }
+    
 
     private static File file = new File("src/videos/Propaganda.mp4");
     private static final String mediaurl = file.toURI().toString();
@@ -157,9 +237,24 @@ public class FXMLBasquetebolController implements Initializable {
         new Thread(t2).start();
 
     }
+    
+//    public void pegarUser(String u) {
+//
+//        this.cliente(u);
+//
+//    }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
+        lc = new FXMLLoginController();
+        
+        try{
+        cliente(lc.retornaUser());
+        }catch(Exception ex){
+            System.out.println("ex");
+        }
+        
         media = new Media(mediaurl);
         mediaplayer = new MediaPlayer(media);
         mvBasquete.setMediaPlayer(mediaplayer);

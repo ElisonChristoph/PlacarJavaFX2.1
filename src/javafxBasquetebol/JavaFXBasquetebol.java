@@ -23,6 +23,17 @@ import javafx.stage.StageStyle;
 public class JavaFXBasquetebol extends Application {
     
     private static Stage stage;
+    private String user;
+
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
+    }
+    
+    
     
   /**
      * @param args the command line arguments

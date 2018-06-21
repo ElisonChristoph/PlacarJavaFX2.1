@@ -10,6 +10,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -33,26 +35,54 @@ public class FXMLLoginController implements Initializable {
     private Button bacessar;
     @FXML
     private Button bsair;
+    
+    //varivel user
+    protected static StringProperty user = new SimpleStringProperty();
+    //retrona user
+    public String retornaUser() {
+
+        return user.get();
+
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
         bacessar.setOnMouseClicked((MouseEvent e) -> {
             if (tflogin.getText().equals("admin") && pfsenha.getText().equals("admin")) {
+                
+                //seta valor do user
+                user.setValue("admin");
                 JavaFXPrincipal p = new JavaFXPrincipal();
                 try {
                     p.start(new Stage());
-                    fecha();
+                    
+                   //fecha();
                 } catch (Exception ex) {
                     Logger.getLogger(FXMLLoginController.class.getName()).log(Level.SEVERE, null, ex);
                 }
-            } else {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Erro");
-                alert.setHeaderText("Login ou Senha inválidos!");
-                alert.setContentText("Digite novamente seu Login e sua Senha! ");
-                alert.show();
+            } 
+            if (tflogin.getText().equals("cliente") && pfsenha.getText().equals("cliente")) {
+                
+                //seta valor do user
+                user.setValue("cliente");
+                JavaFXPrincipal p = new JavaFXPrincipal();
+                
+                try {
+                    p.start(new Stage());
+                    
+                    //fecha();
+                } catch (Exception ex) {
+                    Logger.getLogger(FXMLLoginController.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
+//            }else{
+//                Alert alert = new Alert(Alert.AlertType.ERROR);
+//                alert.setTitle("Erro");
+//                alert.setHeaderText("Login ou Senha inválidos!");
+//                alert.setContentText("Digite novamente seu Login e sua Senha! ");
+//                alert.show();
+//            }
         });
 
         bsair.setOnMouseClicked((MouseEvent e) -> {

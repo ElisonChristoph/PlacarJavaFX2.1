@@ -21,6 +21,7 @@ import javafx.stage.StageStyle;
 public class JavaFXPrincipal extends Application {
 
     private static Stage stage;
+    
 
     /**
      * @param args the command line arguments

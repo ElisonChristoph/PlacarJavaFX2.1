@@ -45,6 +45,8 @@ public class FXMLPrincipalController implements Initializable {
 
     @FXML
     private Button bSair;
+    
+    
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -76,6 +78,7 @@ public class FXMLPrincipalController implements Initializable {
         
         bBasquetebol.setOnMouseClicked((MouseEvent e) -> {
             JavaFXBasquetebol b = new JavaFXBasquetebol();
+            
             try {
                 b.start(new Stage());
             } catch (Exception ex) {
