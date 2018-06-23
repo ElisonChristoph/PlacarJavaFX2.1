@@ -23,6 +23,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
+import javafxSet.FXMLSetDadosController;
 import javafxlogin.FXMLLoginController;
 
 /**
@@ -98,6 +99,7 @@ public class FXMLBasquetebolController implements Initializable {
     private Button bmenosperiodo;
     
     private static FXMLLoginController lc;
+    private static FXMLSetDadosController c;
 
     
     protected static BooleanProperty v = new SimpleBooleanProperty();
@@ -238,14 +240,28 @@ public class FXMLBasquetebolController implements Initializable {
 
     }
     
-//    public void pegarUser(String u) {
-//
-//        this.cliente(u);
-//
-//    }
+    //função abaixo, pega o time que foi setado
+    //na tela de configuração do placar
+    public void pegarTime(String nomea, String nomeb) {
+
+        this.lTimeA.setText(nomea);
+        this.lTimeB.setText(nomeb);
+
+    }
+    // final do pega time
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
+         //busca os dados setados na tela anterior
+        // e joga eles para o metodo pegar time
+        c = new FXMLSetDadosController();
+        try {
+            pegarTime(c.retornaTimeA(), c.retornaTimeB());
+        } catch (Exception ex) {
+            System.out.println("Deu merda" + ex.getMessage());
+        }
+
         
         lc = new FXMLLoginController();
         

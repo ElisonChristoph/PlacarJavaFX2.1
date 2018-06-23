@@ -21,9 +21,11 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import javafxBasquetebol.JavaFXBasquetebol;
 import javafxFutebol.FXMLFutebolController;
 import javafxFutebol.JavaFXFutebol;
 import javafxPrincipal.FXMLPrincipalController;
+import javafxVoleibol.JavaFXVoleibol;
 
 /**
  * FXML Controller class
@@ -48,9 +50,10 @@ public class FXMLSetDadosController implements Initializable {
     private TextField tfTimeEsquerda;
     @FXML
     private TextField tfTimeDireita;
-    private int esporte;
+    
     protected static StringProperty timea = new SimpleStringProperty();
     protected static StringProperty timeb = new SimpleStringProperty();
+    
     private static FXMLPrincipalController pc;
     
     @FXML
@@ -71,20 +74,46 @@ public class FXMLSetDadosController implements Initializable {
         return timeb.get();
 
     }
-
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
+        pc = new FXMLPrincipalController();
 
         bContinuar.setOnMouseClicked((MouseEvent e) -> {
             ContinuarButtonAction(e);
-            //timea.setValue(tfTimeDireita.getText());
+            
+            //se o esporte selecioando na janela anterior por futebol
+            //abre o placar futebol
+            if (pc.retornaEsporte().equals("futebol")) {
 
-            if (esporte == 0) {
-                //timeA = tfDireito.getText();
-
-                JavaFXFutebol fb = new JavaFXFutebol();
+                JavaFXFutebol f = new JavaFXFutebol();
                 try {
-                    fb.start(new Stage());
+                    f.start(new Stage());
+                } catch (Exception ex) {
+                    Logger.getLogger(FXMLFutebolController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            
+            //se o esporte selecioando na janela anterior por basquetebol
+            //abre o placar basquetebol
+            if (pc.retornaEsporte().equals("basquete")) {
+
+                JavaFXBasquetebol b = new JavaFXBasquetebol();
+                try {
+                    b.start(new Stage());
+                } catch (Exception ex) {
+                    Logger.getLogger(FXMLFutebolController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            
+            //se o esporte selecioando na janela anterior por voleibol
+            //abre o placar voleibol
+            if (pc.retornaEsporte().equals("volei")) {
+
+                JavaFXVoleibol v = new JavaFXVoleibol();
+                try {
+                    v.start(new Stage());
                 } catch (Exception ex) {
                     Logger.getLogger(FXMLFutebolController.class.getName()).log(Level.SEVERE, null, ex);
                 }
