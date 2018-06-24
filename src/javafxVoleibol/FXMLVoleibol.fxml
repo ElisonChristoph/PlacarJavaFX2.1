@@ -196,7 +196,7 @@
                         <Insets right="180.0" top="120.0" />
                      </GridPane.margin>
                   </Button>
-                  <Label fx:id="lSetsEsquerda1" layoutX="58.0" layoutY="260.0" text="0" textFill="#ff6e00" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="TOP">
+                  <Label fx:id="lfaltasesquerda" layoutX="58.0" layoutY="260.0" text="0" textFill="#ff6e00" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="TOP">
                      <font>
                         <Font name="System Bold" size="120.0" />
                      </font>
@@ -236,7 +236,7 @@
                         <Insets left="20.0" top="30.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label fx:id="lSetsEsquerda11" layoutX="186.0" layoutY="260.0" text="0" textFill="#ff6e00" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="TOP">
+                  <Label fx:id="lfaltasdireita" layoutX="186.0" layoutY="260.0" text="0" textFill="#ff6e00" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="TOP">
                      <font>
                         <Font name="System Bold" size="120.0" />
                      </font>

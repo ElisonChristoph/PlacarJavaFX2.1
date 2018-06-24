@@ -201,12 +201,13 @@ public class FXMLFutebolController implements Initializable {
     }
     //fim da configuração cronometro
 
-    //configuração do placar
-    public void Placar() {
+    //inicio da thread
+    public void PlacareFaltas() {
         Task t2 = new Task() {
             @Override
             protected Object call() throws Exception {
                 
+                // inicio da configuração do placar
                 //Soma 1 gol ao placar do time da esquerda
                 //ao pressionar <-
                 apFutebol.getScene().addEventFilter(KeyEvent.KEY_PRESSED, event -> {
@@ -311,19 +312,10 @@ public class FXMLFutebolController implements Initializable {
                         });
                     }
                 });
-                return null;
-            }
-        };
-        new Thread(t2).start();
-
-    }
-    //final da configuração do placar
-    
-    //configuração das faltas
-    public void Faltas() {
-        Task t3 = new Task() {
-            @Override
-            protected Object call() throws Exception {
+              
+//    //final da configuração do placar
+   
+//    //inicio configuração das faltas
    
                 //Soma 1 gol ao placar do time da esquerda
                 //ao pressionar <-
@@ -374,7 +366,7 @@ public class FXMLFutebolController implements Initializable {
                     faltasd = Integer.parseInt(lfaltasD.getText());
                         faltasd = (faltasd + 1);
                         
-                        String spe = Integer.toString(faltase);                      
+                        String spe = Integer.toString(faltasd);                      
 
                         Platform.runLater(() -> {
 
@@ -430,13 +422,14 @@ public class FXMLFutebolController implements Initializable {
                         });
                     }
                 });
+                //final da configuração das faltas
                 return null;
             }
         };
-        new Thread(t3).start();
+        new Thread(t2).start();
 
     }
-    //final da configuração das faltas
+    //final da thread
     
     //função abaixo, pega o time que foi setado
     //na tela de configuração do placar
@@ -483,13 +476,9 @@ public class FXMLFutebolController implements Initializable {
         // ***************
 
         //chama e inicia a thread do placar 
-        Placar();
+        PlacareFaltas();
         // ***************
 
-        //chama e inicia a thread do placar 
-        Faltas();
-        // ***************
-        
 
     }
 

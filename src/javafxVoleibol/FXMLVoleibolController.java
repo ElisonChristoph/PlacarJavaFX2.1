@@ -72,6 +72,12 @@ public class FXMLVoleibolController implements Initializable {
     private ImageView ivTimeEsquerda;
     @FXML
     private ImageView ivTimeDireita;
+    @FXML
+    private Label lfaltasesquerda;
+    @FXML
+    private Label lfaltasdireita;
+    
+    
 
     //botões cliente
     @FXML
@@ -202,7 +208,7 @@ public class FXMLVoleibolController implements Initializable {
             @Override
             protected Object call() throws Exception {
 
-                //Soma 1 gol ao placar do time da esquerda
+                //Soma 1 ponto ao placar do time da esquerda
                 //ao pressionar <-
                 apVolei.getScene().addEventFilter(KeyEvent.KEY_PRESSED, event -> {
 
@@ -217,7 +223,7 @@ public class FXMLVoleibolController implements Initializable {
                             lPlacarEsquerda.setText(spe);
                         });
                     }
-                    //Soma 1 gol ao placar do time da direita
+                    //Soma 1 ponto ao placar do time da direita
                     //ao pressionar ->
                     if (event.getCode().equals(KeyCode.RIGHT)) {
 
@@ -231,7 +237,7 @@ public class FXMLVoleibolController implements Initializable {
                         });
                     }
                 });
-                //Soma 1 gol ao placar do time da esquerda
+                //Soma 1 ponto ao placar do time da esquerda
                 //ao pressionar o botão +
                 bmaispontosesquerda.addEventFilter(MouseEvent.MOUSE_CLICKED, event -> {
                     pontose = Integer.parseInt(lPlacarEsquerda.getText());
@@ -245,7 +251,7 @@ public class FXMLVoleibolController implements Initializable {
                     });
                 });
 
-                //Soma 1 gol ao placar do time da direita
+                //Soma 1 ponto ao placar do time da direita
                 //ao pressionar o botão +
                 bmaispontosdireita.addEventFilter(MouseEvent.MOUSE_CLICKED, event -> {
                     pontosd = Integer.parseInt(lPlacarDireita.getText());
@@ -259,7 +265,7 @@ public class FXMLVoleibolController implements Initializable {
                     });
                 });
 
-                //Subtrai 1 gol do placar do time da esquerda
+                //Subtrai 1 ponto do placar do time da esquerda
                 //ao pressionar o botão -
                 bmenospontosesquerda.addEventFilter(MouseEvent.MOUSE_CLICKED, (MouseEvent event) -> {
                     pontose = Integer.parseInt(lPlacarEsquerda.getText());
@@ -283,7 +289,7 @@ public class FXMLVoleibolController implements Initializable {
                     }
                 });
 
-                //Subtrai 1 gol do placar do time da direita
+                //Subtrai 1 ponto do placar do time da direita
                 //ao pressionar o botão -
                 bmenospontosdireita.addEventFilter(MouseEvent.MOUSE_CLICKED, event -> {
                     pontosd = Integer.parseInt(lPlacarDireita.getText());
@@ -305,6 +311,117 @@ public class FXMLVoleibolController implements Initializable {
                         });
                     }
                 });
+                //final configuração placar
+                
+                //inicio configuração das faltas
+   
+                //Soma uma falta para time da esquerda
+                //ao pressionar A
+                apVolei.getScene().addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+                    
+                    if (event.getCode().equals(KeyCode.A)) {
+
+                        faltase = Integer.parseInt(lfaltasesquerda.getText());
+                        faltase = (faltase + 1);
+                        String spe = Integer.toString(faltase);
+
+                        Platform.runLater(() -> {
+
+                            lfaltasesquerda.setText(spe);
+                        });
+                    }
+                    //Soma uma falta para o time da direita
+                    //ao pressionar D
+                    if (event.getCode().equals(KeyCode.D)) {
+
+                        faltasd = Integer.parseInt(lfaltasdireita.getText());
+                        faltasd = (faltasd + 1);
+                        String spd = Integer.toString(faltasd);
+                        
+                        Platform.runLater(() -> {
+
+                            lfaltasdireita.setText(spd);
+                        });
+                    }
+                });
+                //Soma 1 falta ao time da esquerda
+                    //ao pressionar o botão +
+                bmaisfaltaesquerda.addEventFilter(MouseEvent.MOUSE_CLICKED , event -> {
+                    faltase = Integer.parseInt(lfaltasesquerda.getText());
+                        faltase = (faltase + 1);
+                        
+                        String spe = Integer.toString(faltase);                      
+
+                        Platform.runLater(() -> {
+
+                            lfaltasesquerda.setText(spe);
+                        });
+                });
+                
+                //Soma 1 falta ao time da direita
+                    //ao pressionar o botão +
+                bmaisfaltadireita.addEventFilter(MouseEvent.MOUSE_CLICKED , event -> {
+                    faltasd = Integer.parseInt(lfaltasdireita.getText());
+                        faltasd = (faltasd + 1);
+                        
+                        String spe = Integer.toString(faltasd);                      
+
+                        Platform.runLater(() -> {
+
+                            lfaltasdireita.setText(spe);
+                        });
+                });
+                
+                //Subtrai uma falta do time da esquerda
+                    //ao pressionar o botão -
+                bmenosfaltaesquerda.addEventFilter(MouseEvent.MOUSE_CLICKED , (MouseEvent event) -> {
+                    faltase = Integer.parseInt(lfaltasesquerda.getText());
+                    
+                    if(faltase == 0){
+                        String spe = Integer.toString(faltase);
+                        
+                        Platform.runLater(() -> {
+
+                            lfaltasesquerda.setText(spe);
+                        });
+                    }else{
+                        faltase = (faltase - 1);
+                        
+                        String spe = Integer.toString(faltase);
+                        
+                        Platform.runLater(() -> {
+
+                            lfaltasesquerda.setText(spe);
+                        });
+                    }
+                });
+                
+                
+                //Subtrai uma falta do time da direita
+                    //ao pressionar o botão -
+                bmenosfaltadireita.addEventFilter(MouseEvent.MOUSE_CLICKED , (MouseEvent event) -> {
+                    faltasd = Integer.parseInt(lfaltasdireita.getText());
+                    
+                    if(faltasd == 0){
+                        String spe = Integer.toString(faltasd);
+                        
+                        Platform.runLater(() -> {
+
+                            lfaltasdireita.setText(spe);
+                        });
+                    }else{
+                        faltasd = (faltasd - 1);
+                        
+                        String spe = Integer.toString(faltasd);
+                        
+                        Platform.runLater(() -> {
+
+                            lfaltasdireita.setText(spe);
+                        });
+                    }
+                });
+                //final da configuração das faltas
+                
                 return null;
             }
         };
