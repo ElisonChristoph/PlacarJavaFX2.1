@@ -16,9 +16,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -42,15 +44,15 @@ public class FXMLBasquetebolController implements Initializable {
     @FXML
     private Label lPeriodo;
     @FXML
-    private Label l24seg;
+    private Label lShotClock;
     @FXML
     private Label lTimeA;
     @FXML
     private Label lTimeB;
     @FXML
-    private Label lFaltasA;
+    private Label lfaltasE;
     @FXML
-    private Label lFaltasB;
+    private Label lfaltasD;
     @FXML
     private Label lPontosA;
     @FXML
@@ -59,7 +61,7 @@ public class FXMLBasquetebolController implements Initializable {
     private ImageView ivTimeA;
     @FXML
     private ImageView ivTimeB;
-    
+
     //Botões e Labels do Cliente
     @FXML
     private Button bplaycron;
@@ -78,13 +80,13 @@ public class FXMLBasquetebolController implements Initializable {
     @FXML
     private Button bmenosfaltasA;
     @FXML
-    private Label lmaispontosA;
+    private TextField tfmaispontosE;
     @FXML
-    private Label lmenospontosA;
+    private TextField tfmenospontosE;
     @FXML
-    private Label lmaispontosB;
+    private TextField tfmaispontosD;
     @FXML
-    private Label lmenospontosB;
+    private TextField tfmenospontosD;
     @FXML
     private Button bmaispontosB;
     @FXML
@@ -97,54 +99,68 @@ public class FXMLBasquetebolController implements Initializable {
     private Button bmaisperiodo;
     @FXML
     private Button bmenosperiodo;
-    
+
     private static FXMLLoginController lc;
     private static FXMLSetDadosController c;
 
-    
     protected static BooleanProperty v = new SimpleBooleanProperty();
-    
+
     //recebe o tipo de usuario
     //se for admin seta false na visible dos botoes abaixo
     //se for cliente seta true na visible doa botoes abaixo
-    public void cliente(String user){
+    public void cliente(String user) {
         v.setValue(false);
         System.out.println(user);
-        if(user.contains("cliente")){
-            
+        if (user.contains("cliente")) {
+
             v.setValue(true);
         }
         //seta visibilidade dos botoes
-    bplaycron.visibleProperty().bindBidirectional(v);
-    bstopcron.visibleProperty().bindBidirectional(v);
-    bplayshot.visibleProperty().bindBidirectional(v);
-    bstopshot.visibleProperty().bindBidirectional(v);
-    bmaispontosA.visibleProperty().bindBidirectional(v);
-    bmenospontosA.visibleProperty().bindBidirectional(v);
-    bmaisfaltasA.visibleProperty().bindBidirectional(v);
-    bmenosfaltasA.visibleProperty().bindBidirectional(v);
-    lmaispontosA.visibleProperty().bindBidirectional(v);
-    lmenospontosA.visibleProperty().bindBidirectional(v);
-    lmaispontosB.visibleProperty().bindBidirectional(v);
-    lmenospontosB.visibleProperty().bindBidirectional(v);
-    bmaispontosB.visibleProperty().bindBidirectional(v);
-    bmenospontosB.visibleProperty().bindBidirectional(v);
-    bmaisfaltasB.visibleProperty().bindBidirectional(v);
-    bmenosfaltasB.visibleProperty().bindBidirectional(v);
-    bmaisperiodo.visibleProperty().bindBidirectional(v);
-    bmenosperiodo.visibleProperty().bindBidirectional(v);
+        bplaycron.visibleProperty().bindBidirectional(v);
+        bstopcron.visibleProperty().bindBidirectional(v);
+        bplayshot.visibleProperty().bindBidirectional(v);
+        bstopshot.visibleProperty().bindBidirectional(v);
+        bmaispontosA.visibleProperty().bindBidirectional(v);
+        bmenospontosA.visibleProperty().bindBidirectional(v);
+        bmaisfaltasA.visibleProperty().bindBidirectional(v);
+        bmenosfaltasA.visibleProperty().bindBidirectional(v);
+        tfmaispontosE.visibleProperty().bindBidirectional(v);
+        tfmenospontosE.visibleProperty().bindBidirectional(v);
+        tfmaispontosD.visibleProperty().bindBidirectional(v);
+        tfmenospontosD.visibleProperty().bindBidirectional(v);
+        bmaispontosB.visibleProperty().bindBidirectional(v);
+        bmenospontosB.visibleProperty().bindBidirectional(v);
+        bmaisfaltasB.visibleProperty().bindBidirectional(v);
+        bmenosfaltasB.visibleProperty().bindBidirectional(v);
+        bmaisperiodo.visibleProperty().bindBidirectional(v);
+        bmenosperiodo.visibleProperty().bindBidirectional(v);
     }
     
+    private int pontose = 0;
+    private int pontosd = 0;
+    
+    private int pontosmais = 0;
+    private int pontosmenos = 0;
+    
+    private int faltase = 0;
+    private int faltasd = 0;
 
-    private static File file = new File("src/videos/Propaganda.mp4");
-    private static final String mediaurl = file.toURI().toString();
+    //Arquivo Propaganda
+    private static File video = new File("src/videos/Propaganda.mp4");
+    private static final String videourl = video.toURI().toString();
     private MediaPlayer mediaplayer;
     private Media media;
+
+    //Arquivo Som
+    private static File somshotclock = new File("src/videos/musica.mp3");
+    private static final String somurl = somshotclock.toURI().toString();
+    private MediaPlayer mediaplayershotclock;
+    private Media mediasom;
 
     public boolean stopc = true;
     private int segundo = 60;
     private int minuto = 10;
-    
+
     //Cronometro
     public void iniciaCronometro() {
         Task t = new Task() {
@@ -180,6 +196,62 @@ public class FXMLBasquetebolController implements Initializable {
 
     }
 
+    //Cronometro Shot Clock
+    private int shotclock = 24;
+   public boolean startshot = false;
+   public boolean start = true;
+
+    public void shotclock() {
+        Task t3 = new Task() {
+            @Override
+            protected Object call() throws Exception {
+                
+                while (start == true){   
+                
+                while (startshot == false){
+                bplayshot.addEventFilter(MouseEvent.MOUSE_CLICKED, event -> {
+                    startshot = true;
+                    });
+                }
+                    while (startshot == true) {
+                    
+                    bstopshot.addEventFilter(MouseEvent.MOUSE_CLICKED, event -> {
+                    startshot = false;
+                    shotclock = 24;
+                    lShotClock.setText("24");
+                });
+
+                    String seg = shotclock <= 9 ? "0" + shotclock : shotclock + "";
+
+                    Platform.runLater(() -> {
+
+                        lShotClock.setText(seg);
+                    });
+
+                    if (shotclock == 00) {
+
+                        mediasom = new Media(somurl);
+                        mediaplayer = new MediaPlayer(mediasom);
+                        mediaplayer.play();
+
+                        startshot = false;
+                    }
+                    if (shotclock != 0) {
+                        shotclock--;
+
+                    }
+                    Thread.sleep(1000);
+
+                }
+                }
+                        
+                return false;
+            }
+            
+        };
+        new Thread(t3).start();
+    }
+
     //Placar
     public void Placar() {
         Task t2 = new Task() {
@@ -187,51 +259,198 @@ public class FXMLBasquetebolController implements Initializable {
             @Override
             protected Object call() throws Exception {
                 
-                 //Soma 1 gol ao placar do time da esquerda
-                //ao pressionar <-
-                apBasquete.getScene().addEventFilter(KeyEvent.KEY_PRESSED, event -> {
-                    int pe = 0;                
-                int pd = 0;
-                    if (event.getCode().equals(KeyCode.LEFT)) {
-                        
-                        pe = Integer.parseInt(lPontosA.getText());
-                        pe = (pe + 1);
-                        String spe = Integer.toString(pe);
-                        if(pe < 10){
-                        Platform.runLater(() -> {
+               
+                //Soma 1 gol ao placar do time da esquerda
+                    //ao pressionar o botão +
+                bmaispontosA.addEventFilter(MouseEvent.MOUSE_CLICKED , event -> {
+                    pontose = Integer.parseInt(lPontosA.getText());
+                    pontosmais = Integer.parseInt(tfmaispontosE.getText());
+                        pontose = (pontose + pontosmais);
+                        pontosmais = 0;
+                        String spe = Integer.toString(pontose);                      
 
-                            lPontosA.setText("0"+spe);
-                        });
-                        };
-                        if(pe >= 10){
                         Platform.runLater(() -> {
 
                             lPontosA.setText(spe);
                         });
-                        };
-                    }
+                });
+                
+                //Soma 1 gol ao placar do time da direita
+                    //ao pressionar o botão +
+                bmaispontosB.addEventFilter(MouseEvent.MOUSE_CLICKED , event -> {
+                    pontosd = Integer.parseInt(lPontosB.getText());
+                    pontosmais = Integer.parseInt(tfmaispontosD.getText());
+                        pontosd = (pontosd + pontosmais);
+                        pontosmais = 0;
+                        String spd = Integer.toString(pontosd);                      
 
-                    //Soma 1 gol ao placar do time da direita
-                    //ao pressionar ->
-                    if (event.getCode().equals(KeyCode.RIGHT)) {
-                        
-                        pd = Integer.parseInt(lPontosB.getText());
-                        pd = (pd + 1);
-                        String spd = Integer.toString(pd);
-                        if(pd < 10){
-                        Platform.runLater(() -> {
-
-                            lPontosB.setText("0"+spd);
-                        });
-                        }
-                        if(pd >= 10){
                         Platform.runLater(() -> {
 
                             lPontosB.setText(spd);
                         });
-                        }
+                });
+                
+                //Subtrai 1 gol do placar do time da esquerda
+                    //ao pressionar o botão -
+                bmenospontosA.addEventFilter(MouseEvent.MOUSE_CLICKED , (MouseEvent event) -> {
+                    pontose = Integer.parseInt(lPontosA.getText());
+                    pontosmenos = Integer.parseInt(tfmenospontosE.getText());
+                    if(pontose == 0){
+                        String spe = Integer.toString(pontose);
+                        
+                        Platform.runLater(() -> {
+
+                            lPontosA.setText("0" + spe);
+                        });
+                    }else{
+                        pontose = (pontose - pontosmenos);
+                        
+                        String spe = Integer.toString(pontose);
+                        
+                        Platform.runLater(() -> {
+
+                            lPontosA.setText(spe);
+                        });
+                        pontosmenos = 0;
                     }
                 });
+                
+                
+                //Subtrai 1 gol do placar do time da direita
+                    //ao pressionar o botão -
+                bmenospontosB.addEventFilter(MouseEvent.MOUSE_CLICKED , event -> {
+                    pontosd = Integer.parseInt(lPontosB.getText());
+                    pontosmenos = Integer.parseInt(tfmenospontosD.getText());
+                        if(pontosd == 0){
+                        String spd = Integer.toString(pontosd);
+                        
+                        Platform.runLater(() -> {
+
+                            lPontosB.setText("0" + spd);
+                        });
+                    }else{
+                        pontosd = (pontosd - pontosmenos);
+                        
+                        String spd = Integer.toString(pontosd);
+                        
+                        Platform.runLater(() -> {
+
+                            lPontosB.setText(spd);
+                        });
+                        pontosmenos = 0;
+                    }
+                });
+              
+//    //final da configuração do placar
+   
+//    //inicio configuração das faltas
+   
+                //Soma 1 gol ao placar do time da esquerda
+                //ao pressionar <-
+                apBasquete.getScene().addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+                    
+                    if (event.getCode().equals(KeyCode.A)) {
+
+                        faltase = Integer.parseInt(lfaltasE.getText());
+                        faltase = (faltase + 1);
+                        String spe = Integer.toString(faltase);
+
+                        Platform.runLater(() -> {
+
+                            lfaltasE.setText(spe);
+                        });
+                    }
+                    //Soma 1 gol ao placar do time da direita
+                    //ao pressionar ->
+                    if (event.getCode().equals(KeyCode.D)) {
+
+                        faltasd = Integer.parseInt(lfaltasD.getText());
+                        faltasd = (faltasd + 1);
+                        String spd = Integer.toString(faltasd);
+                        
+                        Platform.runLater(() -> {
+
+                            lfaltasD.setText(spd);
+                        });
+                    }
+                });
+                //Soma 1 falta ao time da esquerda
+                    //ao pressionar o botão +
+                bmaisfaltasA.addEventFilter(MouseEvent.MOUSE_CLICKED , event -> {
+                    faltase = Integer.parseInt(lfaltasE.getText());
+                        faltase = (faltase + 1);
+                        
+                        String spe = Integer.toString(faltase);                      
+
+                        Platform.runLater(() -> {
+
+                            lfaltasE.setText(spe);
+                        });
+                });
+                
+                //Soma 1 falta ao time da direita
+                    //ao pressionar o botão +
+                bmaisfaltasB.addEventFilter(MouseEvent.MOUSE_CLICKED , event -> {
+                    faltasd = Integer.parseInt(lfaltasD.getText());
+                        faltasd = (faltasd + 1);
+                        
+                        String spe = Integer.toString(faltasd);                      
+
+                        Platform.runLater(() -> {
+
+                            lfaltasD.setText(spe);
+                        });
+                });
+                
+                //Subtrai uma falta do time da esquerda
+                    //ao pressionar o botão -
+                bmenosfaltasA.addEventFilter(MouseEvent.MOUSE_CLICKED , (MouseEvent event) -> {
+                    faltase = Integer.parseInt(lfaltasE.getText());
+                    
+                    if(faltase == 0){
+                        String spe = Integer.toString(faltase);
+                        
+                        Platform.runLater(() -> {
+
+                            lfaltasE.setText(spe);
+                        });
+                    }else{
+                        faltase = (faltase - 1);
+                        
+                        String spe = Integer.toString(faltase);
+                        
+                        Platform.runLater(() -> {
+
+                            lfaltasE.setText(spe);
+                        });
+                    }
+                });
+                
+                
+                //Subtrai uma falta do time da direita
+                    //ao pressionar o botão -
+                bmenosfaltasB.addEventFilter(MouseEvent.MOUSE_CLICKED , (MouseEvent event) -> {
+                    faltasd = Integer.parseInt(lfaltasD.getText());
+                    
+                    if(faltasd == 0){
+                        String spe = Integer.toString(faltasd);
+                        
+                        Platform.runLater(() -> {
+
+                            lfaltasD.setText(spe);
+                        });
+                    }else{
+                        faltasd = (faltasd - 1);
+                        
+                        String spe = Integer.toString(faltasd);
+                        
+                        Platform.runLater(() -> {
+
+                            lfaltasD.setText(spe);
+                        });
+                    }
+                });
+                //final da configuração das faltas
                 //}
                 return null;
             }
@@ -239,7 +458,7 @@ public class FXMLBasquetebolController implements Initializable {
         new Thread(t2).start();
 
     }
-    
+
     //função abaixo, pega o time que foi setado
     //na tela de configuração do placar
     public void pegarTime(String nomea, String nomeb) {
@@ -252,8 +471,8 @@ public class FXMLBasquetebolController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
-         //busca os dados setados na tela anterior
+
+        //busca os dados setados na tela anterior
         // e joga eles para o metodo pegar time
         c = new FXMLSetDadosController();
         try {
@@ -262,22 +481,20 @@ public class FXMLBasquetebolController implements Initializable {
             System.out.println("Deu merda" + ex.getMessage());
         }
 
-        
         lc = new FXMLLoginController();
-        
-        try{
-        cliente(lc.retornaUser());
-        }catch(Exception ex){
+
+        try {
+            cliente(lc.retornaUser());
+        } catch (Exception ex) {
             System.out.println("ex");
         }
-        
-        media = new Media(mediaurl);
+
+        media = new Media(videourl);
         mediaplayer = new MediaPlayer(media);
         mvBasquete.setMediaPlayer(mediaplayer);
         mediaplayer.play();
-       iniciaCronometro();
-       Placar();
-
-    }
-
+        iniciaCronometro();
+        shotclock();
+        Placar();
+    }    
 }
