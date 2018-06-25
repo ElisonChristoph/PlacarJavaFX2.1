@@ -260,7 +260,7 @@ public class FXMLBasquetebolController implements Initializable {
             protected Object call() throws Exception {
                 
                
-                //Soma 1 gol ao placar do time da esquerda
+                //Soma os pontos do textfield ao placar do time da esquerda
                     //ao pressionar o botão +
                 bmaispontosA.addEventFilter(MouseEvent.MOUSE_CLICKED , event -> {
                     pontose = Integer.parseInt(lPontosA.getText());
@@ -275,7 +275,7 @@ public class FXMLBasquetebolController implements Initializable {
                         });
                 });
                 
-                //Soma 1 gol ao placar do time da direita
+                //Soma os pontos do textfield ao placar do time da esquerda
                     //ao pressionar o botão +
                 bmaispontosB.addEventFilter(MouseEvent.MOUSE_CLICKED , event -> {
                     pontosd = Integer.parseInt(lPontosB.getText());
@@ -290,7 +290,7 @@ public class FXMLBasquetebolController implements Initializable {
                         });
                 });
                 
-                //Subtrai 1 gol do placar do time da esquerda
+                //Subtrai os pontos do textfield, do placar do time da esquerda
                     //ao pressionar o botão -
                 bmenospontosA.addEventFilter(MouseEvent.MOUSE_CLICKED , (MouseEvent event) -> {
                     pontose = Integer.parseInt(lPontosA.getText());
@@ -316,7 +316,7 @@ public class FXMLBasquetebolController implements Initializable {
                 });
                 
                 
-                //Subtrai 1 gol do placar do time da direita
+                //Subtrai os pontos do textfield, do placar do time da esquerda
                     //ao pressionar o botão -
                 bmenospontosB.addEventFilter(MouseEvent.MOUSE_CLICKED , event -> {
                     pontosd = Integer.parseInt(lPontosB.getText());
@@ -345,8 +345,8 @@ public class FXMLBasquetebolController implements Initializable {
    
 //    //inicio configuração das faltas
    
-                //Soma 1 gol ao placar do time da esquerda
-                //ao pressionar <-
+                //Soma uma falta ao time da esquerda
+                //ao pressionar A
                 apBasquete.getScene().addEventFilter(KeyEvent.KEY_PRESSED, event -> {
                     
                     if (event.getCode().equals(KeyCode.A)) {
@@ -360,8 +360,8 @@ public class FXMLBasquetebolController implements Initializable {
                             lfaltasE.setText(spe);
                         });
                     }
-                    //Soma 1 gol ao placar do time da direita
-                    //ao pressionar ->
+                    //Soma uma falta ao time da esquerda
+                //ao pressionar D
                     if (event.getCode().equals(KeyCode.D)) {
 
                         faltasd = Integer.parseInt(lfaltasD.getText());
