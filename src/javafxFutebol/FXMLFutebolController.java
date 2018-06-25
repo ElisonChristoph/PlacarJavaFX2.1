@@ -360,7 +360,7 @@ public class FXMLFutebolController implements Initializable {
 //    //final da configuração do placar
 
                 //inicio configuração cartões
-                //Soma 1 falta ao time da esquerda
+                ///Soma um cartao amarelo ao time da esquerda
                 //ao pressionar o botão +
                 bmaisamareloA.addEventFilter(MouseEvent.MOUSE_CLICKED, event -> {
                     amarelos = Integer.parseInt(lamarelosA.getText());
@@ -374,7 +374,7 @@ public class FXMLFutebolController implements Initializable {
                     });
                 });
 
-                //Soma 1 falta ao time da esquerda
+                //Soma um cartao vermelho ao time da esquerda
                 //ao pressionar o botão +
                 bmaisvermelhoA.addEventFilter(MouseEvent.MOUSE_CLICKED, event -> {
                     vermelhos = Integer.parseInt(lvermelhosA.getText());
@@ -388,7 +388,7 @@ public class FXMLFutebolController implements Initializable {
                     });
                 });
 
-                //Soma 1 falta ao time da direita
+                //Soma um cartao vermelho ao time da direita
                 //ao pressionar o botão +
                 bmaisvermelhoB.addEventFilter(MouseEvent.MOUSE_CLICKED, event -> {
                     vermelhos = Integer.parseInt(lvermelhosB.getText());
@@ -402,7 +402,7 @@ public class FXMLFutebolController implements Initializable {
                     });
                 });
 
-                //Soma 1 falta ao time da direita
+                //Soma um cartao amarelo ao time da direita
                 //ao pressionar o botão +
                 bmaisamareloB.addEventFilter(MouseEvent.MOUSE_CLICKED, event -> {
                     amarelos = Integer.parseInt(lamarelosB.getText());
@@ -416,7 +416,7 @@ public class FXMLFutebolController implements Initializable {
                     });
                 });
 
-                //Subtrai uma falta do time da esquerda
+                //Subtrai um cartão vermelho do time da esquerda
                 //ao pressionar o botão -
                 bmenosvermelhoA.addEventFilter(MouseEvent.MOUSE_CLICKED, (MouseEvent event) -> {
                     vermelhos = Integer.parseInt(lvermelhosA.getText());
@@ -440,7 +440,7 @@ public class FXMLFutebolController implements Initializable {
                     }
                 });
 
-                //Subtrai uma falta do time da esquerda
+                //Subtrai um cartao amarelo do time da esquerda 
                 //ao pressionar o botão -
                 bmenosamareloA.addEventFilter(MouseEvent.MOUSE_CLICKED, (MouseEvent event) -> {
                     amarelos = Integer.parseInt(lamarelosA.getText());
@@ -464,7 +464,7 @@ public class FXMLFutebolController implements Initializable {
                     }
                 });
 
-                //Subtrai uma falta do time da esquerda
+                //Subtrai um cartão vermelho do time da direita
                 //ao pressionar o botão -
                 bmenosvermelhoB.addEventFilter(MouseEvent.MOUSE_CLICKED, (MouseEvent event) -> {
                     vermelhos = Integer.parseInt(lvermelhosB.getText());
@@ -488,7 +488,7 @@ public class FXMLFutebolController implements Initializable {
                     }
                 });
 
-                //Subtrai uma falta do time da esquerda
+                //Subtrai um cartao amarelo do time da direita 
                 //ao pressionar o botão -
                 bmenosamareloB.addEventFilter(MouseEvent.MOUSE_CLICKED, (MouseEvent event) -> {
                     amarelos = Integer.parseInt(lamarelosB.getText());
@@ -526,8 +526,8 @@ public class FXMLFutebolController implements Initializable {
             protected Object call() throws Exception {
                 
                     //inicio configuração das faltas
-                //Soma 1 gol ao placar do time da esquerda
-                //ao pressionar <-
+                //Soma uma falta ao time da esquerda
+                //ao pressionar A
                 apFutebol.getScene().addEventFilter(KeyEvent.KEY_PRESSED, event -> {
 
                     if (event.getCode().equals(KeyCode.A)) {
@@ -541,8 +541,8 @@ public class FXMLFutebolController implements Initializable {
                             lfaltasE.setText(spe);
                         });
                     }
-                    //Soma 1 gol ao placar do time da direita
-                    //ao pressionar ->
+                    //Soma uma falta ao time da direita
+                    //ao pressionar D
                     if (event.getCode().equals(KeyCode.D)) {
 
                         faltasd = Integer.parseInt(lfaltasD.getText());
@@ -670,7 +670,6 @@ public class FXMLFutebolController implements Initializable {
                 
                 //configuração acrescimos
                 
-                //configuração do periodo
                 bmaisacrescimo.addEventFilter(MouseEvent.MOUSE_CLICKED, event -> {
                     acrescimo = Integer.parseInt(tfmaisacrescimo.getText());
                     String ac = Integer.toString(acrescimo);
