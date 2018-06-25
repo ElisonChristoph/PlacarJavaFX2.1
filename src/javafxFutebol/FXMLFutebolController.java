@@ -16,6 +16,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -57,7 +58,9 @@ public class FXMLFutebolController implements Initializable {
     private Label lfaltasD;
     @FXML
     private Label lfaltasE;
-    
+    @FXML
+    private Label lperiodo;
+
     //botões clientes
     @FXML
     public Button bmaisgolA;
@@ -98,33 +101,57 @@ public class FXMLFutebolController implements Initializable {
     @FXML
     public Button bmaisacrescimo;
     @FXML
-    public Label lmaisacrescimo;
+    public TextField tfmaisacrescimo;
     @FXML
     public Label lacrescimo;
     @FXML
     public Label lcronacrescimo;
     @FXML
     public Rectangle rectangleacrescimos;
-    
+    @FXML
+    public Rectangle rvideo;
+    @FXML
+    public Button bpararcron;
+    @FXML
+    public Button biniciarcron;
+    @FXML
+    public Button bzeraracrescimos;
+    @FXML
+    public Label lamarelosA;
+    @FXML
+    public Label lvermelhosA;
+    @FXML
+    public Label lamarelosB;
+    @FXML
+    public Label lvermelhosB;
+
+    private int amarelos = 0;
+    private int vermelhos = 0;
+
+    private int periodo = 0;
+
     private int pontose = 0;
     private int pontosd = 0;
-    
+
     private int faltase = 0;
     private int faltasd = 0;
-    
+
     private static FXMLLoginController lc;
 
     protected static BooleanProperty v = new SimpleBooleanProperty();
-
+    protected static BooleanProperty v2 = new SimpleBooleanProperty();
+    
     //recebe o tipo de usuario
     //se for admin seta false na visible dos botoes abaixo
     //se for cliente seta true na visible doa botoes abaixo
     public void cliente(String user) {
         v.setValue(false);
+        v2.setValue(true);
         System.out.println(user);
         if (user.contains("cliente")) {
 
             v.setValue(true);
+            v2.setValue(false);
         }
         //seta visibilidade dos botoes
         bmaisamareloA.visibleProperty().bindBidirectional(v);
@@ -146,11 +173,14 @@ public class FXMLFutebolController implements Initializable {
         bmaisperiodo.visibleProperty().bindBidirectional(v);
         bmenosperiodo.visibleProperty().bindBidirectional(v);
         bmaisacrescimo.visibleProperty().bindBidirectional(v);
-        lmaisacrescimo.visibleProperty().bindBidirectional(v);
+        tfmaisacrescimo.visibleProperty().bindBidirectional(v);
         rectangleacrescimos.visibleProperty().bindBidirectional(v);
         lacrescimo.visibleProperty().bindBidirectional(v);
         lcronacrescimo.visibleProperty().bindBidirectional(v);
-
+        bpararcron.visibleProperty().bindBidirectional(v);
+        biniciarcron.visibleProperty().bindBidirectional(v);
+        bzeraracrescimos.visibleProperty().bindBidirectional(v);
+        rvideo.visibleProperty().bindBidirectional(v2);
     }
 
     //configuração multimedia {
@@ -162,6 +192,7 @@ public class FXMLFutebolController implements Initializable {
     //} fim configuração multimedia
 
     //configuração do cronometro
+    public boolean startcron = true;
     public boolean stopc = true;
     private int segundo = 0;
     private int minuto = 0;
@@ -171,27 +202,40 @@ public class FXMLFutebolController implements Initializable {
 
             @Override
             protected Object call() throws Exception {
-                while (stopc == true) {
-                    segundo++;
+                while (startcron == true) {
 
-                    if (segundo == 60) {
-                        minuto++;
-                        segundo = 0;
+                    while (stopc == false) {
+                        biniciarcron.addEventFilter(MouseEvent.MOUSE_CLICKED, event -> {
+                            stopc = true;
+                        });
                     }
 
-                    if (minuto == 60) {
+                    while (stopc == true) {
+                        bpararcron.addEventFilter(MouseEvent.MOUSE_CLICKED, event -> {
+                            stopc = false;
+                        });
 
-                        minuto = 0;
+                        segundo++;
+
+                        if (segundo == 60) {
+                            minuto++;
+                            segundo = 0;
+                        }
+
+                        if (minuto == 60) {
+
+                            minuto = 0;
+                        }
+                        String min = minuto <= 9 ? "0" + minuto : minuto + "";
+                        String seg = segundo <= 9 ? "0" + segundo : segundo + "";
+
+                        Platform.runLater(() -> {
+
+                            lCronometro.setText(min + ":" + seg);
+                        });
+                        Thread.sleep(1000);
+
                     }
-                    String min = minuto <= 9 ? "0" + minuto : minuto + "";
-                    String seg = segundo <= 9 ? "0" + segundo : segundo + "";
-
-                    Platform.runLater(() -> {
-
-                        lCronometro.setText(min + ":" + seg);
-                    });
-                    Thread.sleep(1000);
-
                 }
                 return null;
             }
@@ -202,16 +246,16 @@ public class FXMLFutebolController implements Initializable {
     //fim da configuração cronometro
 
     //inicio da thread
-    public void PlacareFaltas() {
+    public void PlacarFaltasPeriodoeCartoes() {
         Task t2 = new Task() {
             @Override
             protected Object call() throws Exception {
-                
+
                 // inicio da configuração do placar
                 //Soma 1 gol ao placar do time da esquerda
                 //ao pressionar <-
                 apFutebol.getScene().addEventFilter(KeyEvent.KEY_PRESSED, event -> {
-                    
+
                     if (event.getCode().equals(KeyCode.LEFT)) {
 
                         pontose = Integer.parseInt(lPlacarA.getText());
@@ -230,7 +274,7 @@ public class FXMLFutebolController implements Initializable {
                         pontosd = Integer.parseInt(lPlacarB.getText());
                         pontosd = (pontosd + 1);
                         String spd = Integer.toString(pontosd);
-                        
+
                         Platform.runLater(() -> {
 
                             lPlacarB.setText(spd);
@@ -238,89 +282,86 @@ public class FXMLFutebolController implements Initializable {
                     }
                 });
                 //Soma 1 gol ao placar do time da esquerda
-                    //ao pressionar o botão +
-                bmaisgolA.addEventFilter(MouseEvent.MOUSE_CLICKED , event -> {
+                //ao pressionar o botão +
+                bmaisgolA.addEventFilter(MouseEvent.MOUSE_CLICKED, event -> {
                     pontose = Integer.parseInt(lPlacarA.getText());
-                        pontose = (pontose + 1);
-                        
-                        String spe = Integer.toString(pontose);                      
+                    pontose = (pontose + 1);
 
-                        Platform.runLater(() -> {
+                    String spe = Integer.toString(pontose);
 
-                            lPlacarA.setText(spe);
-                        });
+                    Platform.runLater(() -> {
+
+                        lPlacarA.setText(spe);
+                    });
                 });
-                
+
                 //Soma 1 gol ao placar do time da direita
-                    //ao pressionar o botão +
-                bmaisgolB.addEventFilter(MouseEvent.MOUSE_CLICKED , event -> {
+                //ao pressionar o botão +
+                bmaisgolB.addEventFilter(MouseEvent.MOUSE_CLICKED, event -> {
                     pontosd = Integer.parseInt(lPlacarB.getText());
-                        pontosd = (pontosd + 1);
-                        
-                        String spd = Integer.toString(pontosd);                      
+                    pontosd = (pontosd + 1);
 
-                        Platform.runLater(() -> {
+                    String spd = Integer.toString(pontosd);
 
-                            lPlacarB.setText(spd);
-                        });
+                    Platform.runLater(() -> {
+
+                        lPlacarB.setText(spd);
+                    });
                 });
-                
+
                 //Subtrai 1 gol do placar do time da esquerda
-                    //ao pressionar o botão -
-                bmenosgolA.addEventFilter(MouseEvent.MOUSE_CLICKED , (MouseEvent event) -> {
+                //ao pressionar o botão -
+                bmenosgolA.addEventFilter(MouseEvent.MOUSE_CLICKED, (MouseEvent event) -> {
                     pontose = Integer.parseInt(lPlacarA.getText());
-                    
-                    if(pontose == 0){
+
+                    if (pontose == 0) {
                         String spe = Integer.toString(pontose);
-                        
+
                         Platform.runLater(() -> {
 
                             lPlacarA.setText(spe);
                         });
-                    }else{
+                    } else {
                         pontose = (pontose - 1);
-                        
+
                         String spe = Integer.toString(pontose);
-                        
+
                         Platform.runLater(() -> {
 
                             lPlacarA.setText(spe);
                         });
                     }
                 });
-                
-                
+
                 //Subtrai 1 gol do placar do time da direita
-                    //ao pressionar o botão -
-                bmenosgolB.addEventFilter(MouseEvent.MOUSE_CLICKED , event -> {
+                //ao pressionar o botão -
+                bmenosgolB.addEventFilter(MouseEvent.MOUSE_CLICKED, event -> {
                     pontosd = Integer.parseInt(lPlacarB.getText());
-                        if(pontosd == 0){
+                    if (pontosd == 0) {
                         String spd = Integer.toString(pontosd);
-                        
+
                         Platform.runLater(() -> {
 
                             lPlacarB.setText(spd);
                         });
-                    }else{
+                    } else {
                         pontosd = (pontosd - 1);
-                        
+
                         String spd = Integer.toString(pontosd);
-                        
+
                         Platform.runLater(() -> {
 
                             lPlacarB.setText(spd);
                         });
                     }
                 });
-              
+
 //    //final da configuração do placar
-   
 //    //inicio configuração das faltas
-   
                 //Soma 1 gol ao placar do time da esquerda
                 //ao pressionar <-
                 apFutebol.getScene().addEventFilter(KeyEvent.KEY_PRESSED, event -> {
-                    
+
                     if (event.getCode().equals(KeyCode.A)) {
 
                         faltase = Integer.parseInt(lfaltasE.getText());
@@ -339,7 +380,7 @@ public class FXMLFutebolController implements Initializable {
                         faltasd = Integer.parseInt(lfaltasD.getText());
                         faltasd = (faltasd + 1);
                         String spd = Integer.toString(faltasd);
-                        
+
                         Platform.runLater(() -> {
 
                             lfaltasD.setText(spd);
@@ -347,75 +388,74 @@ public class FXMLFutebolController implements Initializable {
                     }
                 });
                 //Soma 1 falta ao time da esquerda
-                    //ao pressionar o botão +
-                bmaisfaltasA.addEventFilter(MouseEvent.MOUSE_CLICKED , event -> {
+                //ao pressionar o botão +
+                bmaisfaltasA.addEventFilter(MouseEvent.MOUSE_CLICKED, event -> {
                     faltase = Integer.parseInt(lfaltasE.getText());
-                        faltase = (faltase + 1);
-                        
-                        String spe = Integer.toString(faltase);                      
+                    faltase = (faltase + 1);
 
-                        Platform.runLater(() -> {
+                    String spe = Integer.toString(faltase);
 
-                            lfaltasE.setText(spe);
-                        });
+                    Platform.runLater(() -> {
+
+                        lfaltasE.setText(spe);
+                    });
                 });
-                
+
                 //Soma 1 falta ao time da direita
-                    //ao pressionar o botão +
-                bmaisfaltasB.addEventFilter(MouseEvent.MOUSE_CLICKED , event -> {
+                //ao pressionar o botão +
+                bmaisfaltasB.addEventFilter(MouseEvent.MOUSE_CLICKED, event -> {
                     faltasd = Integer.parseInt(lfaltasD.getText());
-                        faltasd = (faltasd + 1);
-                        
-                        String spe = Integer.toString(faltasd);                      
+                    faltasd = (faltasd + 1);
 
-                        Platform.runLater(() -> {
+                    String spe = Integer.toString(faltasd);
 
-                            lfaltasD.setText(spe);
-                        });
+                    Platform.runLater(() -> {
+
+                        lfaltasD.setText(spe);
+                    });
                 });
-                
+
                 //Subtrai uma falta do time da esquerda
-                    //ao pressionar o botão -
-                bmenosfaltasA.addEventFilter(MouseEvent.MOUSE_CLICKED , (MouseEvent event) -> {
+                //ao pressionar o botão -
+                bmenosfaltasA.addEventFilter(MouseEvent.MOUSE_CLICKED, (MouseEvent event) -> {
                     faltase = Integer.parseInt(lfaltasE.getText());
-                    
-                    if(faltase == 0){
+
+                    if (faltase == 0) {
                         String spe = Integer.toString(faltase);
-                        
+
                         Platform.runLater(() -> {
 
                             lfaltasE.setText(spe);
                         });
-                    }else{
+                    } else {
                         faltase = (faltase - 1);
-                        
+
                         String spe = Integer.toString(faltase);
-                        
+
                         Platform.runLater(() -> {
 
                             lfaltasE.setText(spe);
                         });
                     }
                 });
-                
-                
+
                 //Subtrai uma falta do time da direita
-                    //ao pressionar o botão -
-                bmenosfaltasB.addEventFilter(MouseEvent.MOUSE_CLICKED , (MouseEvent event) -> {
+                //ao pressionar o botão -
+                bmenosfaltasB.addEventFilter(MouseEvent.MOUSE_CLICKED, (MouseEvent event) -> {
                     faltasd = Integer.parseInt(lfaltasD.getText());
-                    
-                    if(faltasd == 0){
+
+                    if (faltasd == 0) {
                         String spe = Integer.toString(faltasd);
-                        
+
                         Platform.runLater(() -> {
 
                             lfaltasD.setText(spe);
                         });
-                    }else{
+                    } else {
                         faltasd = (faltasd - 1);
-                        
+
                         String spe = Integer.toString(faltasd);
-                        
+
                         Platform.runLater(() -> {
 
                             lfaltasD.setText(spe);
@@ -423,6 +463,195 @@ public class FXMLFutebolController implements Initializable {
                     }
                 });
                 //final da configuração das faltas
+
+                //configuração do periodo
+                bmaisperiodo.addEventFilter(MouseEvent.MOUSE_CLICKED, event -> {
+                    periodo = Integer.parseInt(lperiodo.getText());
+                    periodo = (periodo + 1);
+
+                    String per = Integer.toString(periodo);
+
+                    Platform.runLater(() -> {
+
+                        lperiodo.setText(per + "°");
+                    });
+                });
+
+                bmenosperiodo.addEventFilter(MouseEvent.MOUSE_CLICKED, (MouseEvent event) -> {
+                    periodo = Integer.parseInt(lperiodo.getText());
+
+                    if (periodo == 0) {
+                        String per = Integer.toString(periodo);
+
+                        Platform.runLater(() -> {
+
+                            lperiodo.setText(per + "°");
+                        });
+                    } else {
+                        periodo = (periodo - 1);
+
+                        String per = Integer.toString(periodo);
+
+                        Platform.runLater(() -> {
+
+                            lperiodo.setText(per + "°");
+                        });
+                    }
+                });
+                // fim configuração periodo
+
+                //inicio configuração cartões
+                //Soma 1 falta ao time da esquerda
+                //ao pressionar o botão +
+                bmaisamareloA.addEventFilter(MouseEvent.MOUSE_CLICKED, event -> {
+                    amarelos = Integer.parseInt(lamarelosA.getText());
+                    amarelos = (amarelos + 1);
+
+                    String am = Integer.toString(amarelos);
+
+                    Platform.runLater(() -> {
+
+                        lamarelosA.setText(am);
+                    });
+                });
+
+                //Soma 1 falta ao time da esquerda
+                //ao pressionar o botão +
+                bmaisvermelhoA.addEventFilter(MouseEvent.MOUSE_CLICKED, event -> {
+                    vermelhos = Integer.parseInt(lvermelhosA.getText());
+                    vermelhos = (vermelhos + 1);
+
+                    String ver = Integer.toString(vermelhos);
+
+                    Platform.runLater(() -> {
+
+                        lvermelhosA.setText(ver);
+                    });
+                });
+
+                //Soma 1 falta ao time da direita
+                //ao pressionar o botão +
+                bmaisvermelhoB.addEventFilter(MouseEvent.MOUSE_CLICKED, event -> {
+                    vermelhos = Integer.parseInt(lvermelhosB.getText());
+                    vermelhos = (vermelhos + 1);
+
+                    String ver = Integer.toString(vermelhos);
+
+                    Platform.runLater(() -> {
+
+                        lvermelhosB.setText(ver);
+                    });
+                });
+
+                //Soma 1 falta ao time da direita
+                //ao pressionar o botão +
+                bmaisamareloB.addEventFilter(MouseEvent.MOUSE_CLICKED, event -> {
+                    amarelos = Integer.parseInt(lamarelosB.getText());
+                    amarelos = (amarelos + 1);
+
+                    String am = Integer.toString(amarelos);
+
+                    Platform.runLater(() -> {
+
+                        lamarelosB.setText(am);
+                    });
+                });
+
+                //Subtrai uma falta do time da esquerda
+                //ao pressionar o botão -
+                bmenosvermelhoA.addEventFilter(MouseEvent.MOUSE_CLICKED, (MouseEvent event) -> {
+                    vermelhos = Integer.parseInt(lvermelhosA.getText());
+
+                    if (vermelhos == 0) {
+                        String ver = Integer.toString(vermelhos);
+
+                        Platform.runLater(() -> {
+
+                            lvermelhosA.setText(ver);
+                        });
+                    } else {
+                        vermelhos = (vermelhos - 1);
+
+                        String ver = Integer.toString(vermelhos);
+
+                        Platform.runLater(() -> {
+
+                            lvermelhosA.setText(ver);
+                        });
+                    }
+                });
+
+                //Subtrai uma falta do time da esquerda
+                //ao pressionar o botão -
+                bmenosamareloA.addEventFilter(MouseEvent.MOUSE_CLICKED, (MouseEvent event) -> {
+                    amarelos = Integer.parseInt(lamarelosA.getText());
+
+                    if (amarelos == 0) {
+                        String am = Integer.toString(amarelos);
+
+                        Platform.runLater(() -> {
+
+                            lamarelosA.setText(am);
+                        });
+                    } else {
+                        amarelos = (amarelos - 1);
+
+                        String am = Integer.toString(amarelos);
+
+                        Platform.runLater(() -> {
+
+                            lamarelosA.setText(am);
+                        });
+                    }
+                });
+
+                //Subtrai uma falta do time da esquerda
+                //ao pressionar o botão -
+                bmenosvermelhoB.addEventFilter(MouseEvent.MOUSE_CLICKED, (MouseEvent event) -> {
+                    vermelhos = Integer.parseInt(lvermelhosB.getText());
+
+                    if (vermelhos == 0) {
+                        String ver = Integer.toString(vermelhos);
+
+                        Platform.runLater(() -> {
+
+                            lvermelhosB.setText(ver);
+                        });
+                    } else {
+                        vermelhos = (vermelhos - 1);
+
+                        String ver = Integer.toString(vermelhos);
+
+                        Platform.runLater(() -> {
+
+                            lvermelhosB.setText(ver);
+                        });
+                    }
+                });
+
+                //Subtrai uma falta do time da esquerda
+                //ao pressionar o botão -
+                bmenosamareloB.addEventFilter(MouseEvent.MOUSE_CLICKED, (MouseEvent event) -> {
+                    amarelos = Integer.parseInt(lamarelosB.getText());
+
+                    if (amarelos == 0) {
+                        String am = Integer.toString(amarelos);
+
+                        Platform.runLater(() -> {
+
+                            lamarelosB.setText(am);
+                        });
+                    } else {
+                        amarelos = (amarelos - 1);
+
+                        String am = Integer.toString(amarelos);
+
+                        Platform.runLater(() -> {
+
+                            lamarelosB.setText(am);
+                        });
+                    }
+                });
                 return null;
             }
         };
@@ -430,7 +659,7 @@ public class FXMLFutebolController implements Initializable {
 
     }
     //final da thread
-    
+
     //função abaixo, pega o time que foi setado
     //na tela de configuração do placar
     public void pegarTime(String nomea, String nomeb) {
@@ -462,13 +691,15 @@ public class FXMLFutebolController implements Initializable {
         } catch (Exception ex) {
             System.out.println("ex");
         }
-        
+
         //configuração de reprodução 
         // do multimedia
+        if(lc.retornaUser().equals("admin")){
         media = new Media(mediaurl);
         mediaplayer = new MediaPlayer(media);
         mvFutebol.setMediaPlayer(mediaplayer);
         mediaplayer.play();
+        }
         // ****************
 
         //Chama e inicia a thread do cronometro
@@ -476,9 +707,8 @@ public class FXMLFutebolController implements Initializable {
         // ***************
 
         //chama e inicia a thread do placar 
-        PlacareFaltas();
+        PlacarFaltasPeriodoeCartoes();
         // ***************
-
 
     }
 

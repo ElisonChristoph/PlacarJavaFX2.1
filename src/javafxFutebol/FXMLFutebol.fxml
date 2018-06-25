@@ -167,7 +167,7 @@
                         <Insets left="40.0" top="20.0" />
                      </GridPane.margin>
                   </ImageView>
-                  <Label text="0" textAlignment="CENTER" textFill="WHITE" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="TOP">
+                  <Label fx:id="lamarelosA" text="0" textAlignment="CENTER" textFill="WHITE" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="TOP">
                      <font>
                         <Font name="System Bold" size="64.0" />
                      </font>
@@ -175,7 +175,7 @@
                         <Insets right="120.0" top="13.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label layoutX="215.0" layoutY="258.0" text="0" textFill="WHITE" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="TOP">
+                  <Label fx:id="lvermelhosA" layoutX="215.0" layoutY="258.0" text="0" textFill="WHITE" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="TOP">
                      <font>
                         <Font name="System Bold" size="64.0" />
                      </font>
@@ -183,7 +183,7 @@
                         <Insets top="13.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label layoutX="135.0" layoutY="271.0" text="0" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="TOP">
+                  <Label fx:id="lvermelhosB" layoutX="135.0" layoutY="271.0" text="0" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="TOP">
                      <font>
                         <Font name="System Bold" size="64.0" />
                      </font>
@@ -191,7 +191,7 @@
                         <Insets top="13.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label layoutX="135.0" layoutY="364.0" text="0" textFill="WHITE" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="TOP">
+                  <Label fx:id="lamarelosB" layoutX="135.0" layoutY="364.0" text="0" textFill="WHITE" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="TOP">
                      <font>
                         <Font name="System Bold" size="64.0" />
                      </font>
@@ -416,6 +416,30 @@
                         <Insets bottom="20.0" />
                      </GridPane.margin>
                   </Text>
+                  <Button fx:id="biniciarcron" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="220.0" text="Iniciar Cronometro" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                     <font>
+                        <Font name="System Bold" size="21.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets right="90.0" top="100.0" />
+                     </GridPane.margin>
+                  </Button>
+                  <Button fx:id="bpararcron" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="89.0" text="Parar" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
+                     <GridPane.margin>
+                        <Insets right="105.0" top="100.0" />
+                     </GridPane.margin>
+                     <font>
+                        <Font name="System Bold" size="21.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="bzeraracrescimos" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="211.0" text="Zerar Acréscimos" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="22.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets top="210.0" />
+                     </GridPane.margin>
+                  </Button>
                </children>
             </GridPane>
          </top>

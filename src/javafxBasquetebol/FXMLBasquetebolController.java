@@ -474,7 +474,7 @@ public class FXMLBasquetebolController implements Initializable {
 
                     Platform.runLater(() -> {
 
-                        lPeriodo.setText(per);
+                        lPeriodo.setText(per + "°");
                     });
                 });
 
@@ -486,7 +486,7 @@ public class FXMLBasquetebolController implements Initializable {
 
                         Platform.runLater(() -> {
 
-                            lPeriodo.setText(per);
+                            lPeriodo.setText(per + "°");
                         });
                     } else {
                         periodo = (periodo - 1);
@@ -495,7 +495,7 @@ public class FXMLBasquetebolController implements Initializable {
 
                         Platform.runLater(() -> {
 
-                            lPeriodo.setText(per);
+                            lPeriodo.setText(per + "°");
                         });
                     }
                 });
