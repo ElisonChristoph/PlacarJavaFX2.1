@@ -105,8 +105,6 @@ public class FXMLFutebolController implements Initializable {
     @FXML
     public Label lacrescimo;
     @FXML
-    public Label lcronacrescimo;
-    @FXML
     public Rectangle rectangleacrescimos;
     @FXML
     public Rectangle rvideo;
@@ -129,6 +127,10 @@ public class FXMLFutebolController implements Initializable {
     private int vermelhos = 0;
 
     private int periodo = 0;
+    
+    private int acrescimo = 0;
+    private String tipouser;
+    protected static BooleanProperty vis = new SimpleBooleanProperty();
 
     private int pontose = 0;
     private int pontosd = 0;
@@ -152,6 +154,7 @@ public class FXMLFutebolController implements Initializable {
 
             v.setValue(true);
             v2.setValue(false);
+            vis.setValue(true);
         }
         //seta visibilidade dos botoes
         bmaisamareloA.visibleProperty().bindBidirectional(v);
@@ -175,8 +178,7 @@ public class FXMLFutebolController implements Initializable {
         bmaisacrescimo.visibleProperty().bindBidirectional(v);
         tfmaisacrescimo.visibleProperty().bindBidirectional(v);
         rectangleacrescimos.visibleProperty().bindBidirectional(v);
-        lacrescimo.visibleProperty().bindBidirectional(v);
-        lcronacrescimo.visibleProperty().bindBidirectional(v);
+        lacrescimo.visibleProperty().bindBidirectional(vis);
         bpararcron.visibleProperty().bindBidirectional(v);
         biniciarcron.visibleProperty().bindBidirectional(v);
         bzeraracrescimos.visibleProperty().bindBidirectional(v);
@@ -193,7 +195,7 @@ public class FXMLFutebolController implements Initializable {
 
     //configuração do cronometro
     public boolean startcron = true;
-    public boolean stopc = true;
+    public boolean stopc = false;
     private int segundo = 0;
     private int minuto = 0;
 
@@ -215,12 +217,11 @@ public class FXMLFutebolController implements Initializable {
                             stopc = false;
                         });
 
-                        segundo++;
-
-                        if (segundo == 60) {
+                        if (segundo == 59) {
                             minuto++;
                             segundo = 0;
                         }
+                        segundo++;
 
                         if (minuto == 60) {
 
@@ -246,7 +247,7 @@ public class FXMLFutebolController implements Initializable {
     //fim da configuração cronometro
 
     //inicio da thread
-    public void PlacarFaltasPeriodoeCartoes() {
+    public void PlacareCartoes() {
         Task t2 = new Task() {
             @Override
             protected Object call() throws Exception {
@@ -357,148 +358,6 @@ public class FXMLFutebolController implements Initializable {
                 });
 
 //    //final da configuração do placar
-//    //inicio configuração das faltas
-                //Soma 1 gol ao placar do time da esquerda
-                //ao pressionar <-
-                apFutebol.getScene().addEventFilter(KeyEvent.KEY_PRESSED, event -> {
-
-                    if (event.getCode().equals(KeyCode.A)) {
-
-                        faltase = Integer.parseInt(lfaltasE.getText());
-                        faltase = (faltase + 1);
-                        String spe = Integer.toString(faltase);
-
-                        Platform.runLater(() -> {
-
-                            lfaltasE.setText(spe);
-                        });
-                    }
-                    //Soma 1 gol ao placar do time da direita
-                    //ao pressionar ->
-                    if (event.getCode().equals(KeyCode.D)) {
-
-                        faltasd = Integer.parseInt(lfaltasD.getText());
-                        faltasd = (faltasd + 1);
-                        String spd = Integer.toString(faltasd);
-
-                        Platform.runLater(() -> {
-
-                            lfaltasD.setText(spd);
-                        });
-                    }
-                });
-                //Soma 1 falta ao time da esquerda
-                //ao pressionar o botão +
-                bmaisfaltasA.addEventFilter(MouseEvent.MOUSE_CLICKED, event -> {
-                    faltase = Integer.parseInt(lfaltasE.getText());
-                    faltase = (faltase + 1);
-
-                    String spe = Integer.toString(faltase);
-
-                    Platform.runLater(() -> {
-
-                        lfaltasE.setText(spe);
-                    });
-                });
-
-                //Soma 1 falta ao time da direita
-                //ao pressionar o botão +
-                bmaisfaltasB.addEventFilter(MouseEvent.MOUSE_CLICKED, event -> {
-                    faltasd = Integer.parseInt(lfaltasD.getText());
-                    faltasd = (faltasd + 1);
-
-                    String spe = Integer.toString(faltasd);
-
-                    Platform.runLater(() -> {
-
-                        lfaltasD.setText(spe);
-                    });
-                });
-
-                //Subtrai uma falta do time da esquerda
-                //ao pressionar o botão -
-                bmenosfaltasA.addEventFilter(MouseEvent.MOUSE_CLICKED, (MouseEvent event) -> {
-                    faltase = Integer.parseInt(lfaltasE.getText());
-
-                    if (faltase == 0) {
-                        String spe = Integer.toString(faltase);
-
-                        Platform.runLater(() -> {
-
-                            lfaltasE.setText(spe);
-                        });
-                    } else {
-                        faltase = (faltase - 1);
-
-                        String spe = Integer.toString(faltase);
-
-                        Platform.runLater(() -> {
-
-                            lfaltasE.setText(spe);
-                        });
-                    }
-                });
-
-                //Subtrai uma falta do time da direita
-                //ao pressionar o botão -
-                bmenosfaltasB.addEventFilter(MouseEvent.MOUSE_CLICKED, (MouseEvent event) -> {
-                    faltasd = Integer.parseInt(lfaltasD.getText());
-
-                    if (faltasd == 0) {
-                        String spe = Integer.toString(faltasd);
-
-                        Platform.runLater(() -> {
-
-                            lfaltasD.setText(spe);
-                        });
-                    } else {
-                        faltasd = (faltasd - 1);
-
-                        String spe = Integer.toString(faltasd);
-
-                        Platform.runLater(() -> {
-
-                            lfaltasD.setText(spe);
-                        });
-                    }
-                });
-                //final da configuração das faltas
-
-                //configuração do periodo
-                bmaisperiodo.addEventFilter(MouseEvent.MOUSE_CLICKED, event -> {
-                    periodo = Integer.parseInt(lperiodo.getText());
-                    periodo = (periodo + 1);
-
-                    String per = Integer.toString(periodo);
-
-                    Platform.runLater(() -> {
-
-                        lperiodo.setText(per + "°");
-                    });
-                });
-
-                bmenosperiodo.addEventFilter(MouseEvent.MOUSE_CLICKED, (MouseEvent event) -> {
-                    periodo = Integer.parseInt(lperiodo.getText());
-
-                    if (periodo == 0) {
-                        String per = Integer.toString(periodo);
-
-                        Platform.runLater(() -> {
-
-                            lperiodo.setText(per + "°");
-                        });
-                    } else {
-                        periodo = (periodo - 1);
-
-                        String per = Integer.toString(periodo);
-
-                        Platform.runLater(() -> {
-
-                            lperiodo.setText(per + "°");
-                        });
-                    }
-                });
-                // fim configuração periodo
 
                 //inicio configuração cartões
                 //Soma 1 falta ao time da esquerda
@@ -660,6 +519,176 @@ public class FXMLFutebolController implements Initializable {
     }
     //final da thread
 
+    public void PeriodoAcrescimoseFaltas() {
+        Task t3 = new Task() {
+
+            @Override
+            protected Object call() throws Exception {
+                
+                    //inicio configuração das faltas
+                //Soma 1 gol ao placar do time da esquerda
+                //ao pressionar <-
+                apFutebol.getScene().addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+
+                    if (event.getCode().equals(KeyCode.A)) {
+
+                        faltase = Integer.parseInt(lfaltasE.getText());
+                        faltase = (faltase + 1);
+                        String spe = Integer.toString(faltase);
+
+                        Platform.runLater(() -> {
+
+                            lfaltasE.setText(spe);
+                        });
+                    }
+                    //Soma 1 gol ao placar do time da direita
+                    //ao pressionar ->
+                    if (event.getCode().equals(KeyCode.D)) {
+
+                        faltasd = Integer.parseInt(lfaltasD.getText());
+                        faltasd = (faltasd + 1);
+                        String spd = Integer.toString(faltasd);
+
+                        Platform.runLater(() -> {
+
+                            lfaltasD.setText(spd);
+                        });
+                    }
+                });
+                //Soma 1 falta ao time da esquerda
+                //ao pressionar o botão +
+                bmaisfaltasA.addEventFilter(MouseEvent.MOUSE_CLICKED, event -> {
+                    faltase = Integer.parseInt(lfaltasE.getText());
+                    faltase = (faltase + 1);
+
+                    String spe = Integer.toString(faltase);
+
+                    Platform.runLater(() -> {
+
+                        lfaltasE.setText(spe);
+                    });
+                });
+
+                //Soma 1 falta ao time da direita
+                //ao pressionar o botão +
+                bmaisfaltasB.addEventFilter(MouseEvent.MOUSE_CLICKED, event -> {
+                    faltasd = Integer.parseInt(lfaltasD.getText());
+                    faltasd = (faltasd + 1);
+
+                    String spe = Integer.toString(faltasd);
+
+                    Platform.runLater(() -> {
+
+                        lfaltasD.setText(spe);
+                    });
+                });
+
+                //Subtrai uma falta do time da esquerda
+                //ao pressionar o botão -
+                bmenosfaltasA.addEventFilter(MouseEvent.MOUSE_CLICKED, (MouseEvent event) -> {
+                    faltase = Integer.parseInt(lfaltasE.getText());
+
+                    if (faltase == 0) {
+                        String spe = Integer.toString(faltase);
+
+                        Platform.runLater(() -> {
+
+                            lfaltasE.setText(spe);
+                        });
+                    } else {
+                        faltase = (faltase - 1);
+
+                        String spe = Integer.toString(faltase);
+
+                        Platform.runLater(() -> {
+
+                            lfaltasE.setText(spe);
+                        });
+                    }
+                });
+
+                //Subtrai uma falta do time da direita
+                //ao pressionar o botão -
+                bmenosfaltasB.addEventFilter(MouseEvent.MOUSE_CLICKED, (MouseEvent event) -> {
+                    faltasd = Integer.parseInt(lfaltasD.getText());
+
+                    if (faltasd == 0) {
+                        String spe = Integer.toString(faltasd);
+
+                        Platform.runLater(() -> {
+
+                            lfaltasD.setText(spe);
+                        });
+                    } else {
+                        faltasd = (faltasd - 1);
+
+                        String spe = Integer.toString(faltasd);
+
+                        Platform.runLater(() -> {
+
+                            lfaltasD.setText(spe);
+                        });
+                    }
+                });
+                //final da configuração das faltas
+
+                //configuração do periodo
+                bmaisperiodo.addEventFilter(MouseEvent.MOUSE_CLICKED, event -> {
+                    periodo = Integer.parseInt(lperiodo.getText());
+                    periodo = (periodo + 1);
+
+                    String per = Integer.toString(periodo);
+
+                    Platform.runLater(() -> {
+
+                        lperiodo.setText(per + "°");
+                    });
+                });
+
+                bmenosperiodo.addEventFilter(MouseEvent.MOUSE_CLICKED, (MouseEvent event) -> {
+                    periodo = Integer.parseInt(lperiodo.getText());
+
+                    if (periodo == 0) {
+                        String per = Integer.toString(periodo);
+
+                        Platform.runLater(() -> {
+
+                            lperiodo.setText(per + "°");
+                        });
+                    } else {
+                        periodo = (periodo - 1);
+
+                        String per = Integer.toString(periodo);
+
+                        Platform.runLater(() -> {
+
+                            lperiodo.setText(per + "°");
+                        });
+                    }
+                });
+                // fim configuração periodo    
+                
+                //configuração acrescimos
+                
+                //configuração do periodo
+                bmaisacrescimo.addEventFilter(MouseEvent.MOUSE_CLICKED, event -> {
+                    acrescimo = Integer.parseInt(tfmaisacrescimo.getText());
+                    String ac = Integer.toString(acrescimo);
+                    vis.setValue(true);
+
+                    Platform.runLater(() -> {
+
+                        lacrescimo.setText("+" + ac);
+                    });
+                });
+                
+                return null;
+            }
+        };
+        new Thread(t3).start();
+
+    }
+    
     //função abaixo, pega o time que foi setado
     //na tela de configuração do placar
     public void pegarTime(String nomea, String nomeb) {
@@ -688,6 +717,8 @@ public class FXMLFutebolController implements Initializable {
 
         try {
             cliente(lc.retornaUser());
+            tipouser = lc.retornaUser();
+            System.out.println(tipouser);
         } catch (Exception ex) {
             System.out.println("ex");
         }
@@ -707,7 +738,8 @@ public class FXMLFutebolController implements Initializable {
         // ***************
 
         //chama e inicia a thread do placar 
-        PlacarFaltasPeriodoeCartoes();
+        PlacareCartoes();
+        PeriodoAcrescimoseFaltas();
         // ***************
 
     }
