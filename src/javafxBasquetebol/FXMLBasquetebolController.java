@@ -537,7 +537,7 @@ public class FXMLBasquetebolController implements Initializable {
 
                             Platform.runLater(() -> {
 
-                                lfaltasE.setText(spe);
+                                lfaltasE.setText("0" + spe);
                             });
                         } else {
                             faltase = (faltase - 1);
@@ -567,7 +567,7 @@ public class FXMLBasquetebolController implements Initializable {
 
                             Platform.runLater(() -> {
 
-                                lfaltasD.setText(spe);
+                                lfaltasD.setText("0" + spe);
                             });
                         } else {
                             faltasd = (faltasd - 1);

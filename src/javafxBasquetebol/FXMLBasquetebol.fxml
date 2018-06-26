@@ -31,12 +31,12 @@
                 <RowConstraints maxHeight="203.0" minHeight="0.0" prefHeight="152.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label fx:id="lTimeB" alignment="CENTER" prefHeight="71.0" prefWidth="289.0" text="Time B" textFill="WHITE" underline="true" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.valignment="TOP">
+                  <Label fx:id="lTimeB" alignment="CENTER" prefHeight="71.0" prefWidth="289.0" text="Time B" textFill="WHITE" underline="true" GridPane.columnIndex="2" GridPane.halignment="LEFT">
                      <font>
                         <Font name="System Bold" size="49.0" />
                      </font>
                      <GridPane.margin>
-                        <Insets left="-50.0" />
+                        <Insets bottom="130.0" left="-50.0" />
                      </GridPane.margin>
                   </Label>
                   <Label fx:id="lPontosB" prefHeight="109.0" prefWidth="111.0" text="00" textFill="#ff641f" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.valignment="BOTTOM">
@@ -88,12 +88,12 @@
                         <Insets right="20.0" />
                      </padding>
                   </Label>
-                  <Label fx:id="lTimeA" alignment="CENTER" layoutX="594.0" layoutY="92.0" prefHeight="69.0" prefWidth="291.0" text="Time A" textFill="WHITE" underline="true" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
+                  <Label fx:id="lTimeA" alignment="CENTER" layoutX="594.0" layoutY="92.0" prefHeight="71.0" prefWidth="289.0" text="Time A" textFill="WHITE" underline="true" GridPane.halignment="RIGHT">
                      <font>
                         <Font name="System Bold" size="49.0" />
                      </font>
                      <GridPane.margin>
-                        <Insets right="-50.0" />
+                        <Insets bottom="130.0" right="-50.0" />
                      </GridPane.margin>
                   </Label>
                   <Label fx:id="lPontosA" layoutX="594.0" layoutY="51.0" text="00" textFill="#ff641f" GridPane.halignment="RIGHT" GridPane.valignment="BOTTOM">
@@ -196,7 +196,7 @@
                         <Insets bottom="35.0" right="150.0" top="100.0" />
                      </GridPane.margin>
                   </Button>
-                  <TextField fx:id="tfmaispontosE" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="42.0" prefWidth="44.0" text="0" GridPane.halignment="RIGHT">
+                  <TextField fx:id="tfmaispontosE" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="42.0" prefWidth="63.0" text="0" GridPane.halignment="RIGHT">
                      <GridPane.margin>
                         <Insets bottom="15.0" right="200.0" />
                      </GridPane.margin>
@@ -204,7 +204,7 @@
                         <Font name="System Bold" size="24.0" />
                      </font>
                   </TextField>
-                  <TextField fx:id="tfmenospontosE" layoutX="35.0" layoutY="13.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="42.0" prefWidth="44.0" text="0" GridPane.halignment="RIGHT">
+                  <TextField fx:id="tfmenospontosE" alignment="CENTER" layoutX="35.0" layoutY="13.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="42.0" prefWidth="63.0" text="0" GridPane.halignment="RIGHT">
                      <GridPane.margin>
                         <Insets right="200.0" top="80.0" />
                      </GridPane.margin>
@@ -212,7 +212,7 @@
                         <Font name="System Bold" size="24.0" />
                      </font>
                   </TextField>
-                  <TextField fx:id="tfmaispontosD" layoutX="35.0" layoutY="13.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="42.0" prefWidth="44.0" text="0" GridPane.columnIndex="2" GridPane.halignment="LEFT">
+                  <TextField fx:id="tfmaispontosD" alignment="CENTER" layoutX="35.0" layoutY="13.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="42.0" prefWidth="60.0" text="0" GridPane.columnIndex="2" GridPane.halignment="LEFT">
                      <GridPane.margin>
                         <Insets bottom="15.0" left="200.0" />
                      </GridPane.margin>
@@ -220,7 +220,7 @@
                         <Font name="System Bold" size="24.0" />
                      </font>
                   </TextField>
-                  <TextField fx:id="tfmenospontosD" layoutX="35.0" layoutY="151.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="42.0" prefWidth="44.0" text="0" GridPane.columnIndex="2" GridPane.halignment="LEFT">
+                  <TextField fx:id="tfmenospontosD" alignment="CENTER" layoutX="35.0" layoutY="151.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="42.0" prefWidth="61.0" text="0" GridPane.columnIndex="2" GridPane.halignment="LEFT">
                      <GridPane.margin>
                         <Insets left="200.0" top="80.0" />
                      </GridPane.margin>
