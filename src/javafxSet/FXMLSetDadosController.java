@@ -9,16 +9,18 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafxBasquetebol.JavaFXBasquetebol;
@@ -50,11 +52,31 @@ public class FXMLSetDadosController implements Initializable {
     private TextField tfTimeEsquerda;
     @FXML
     private TextField tfTimeDireita;
+    @FXML
+    private Label lbasquete;
+    @FXML
+    private RadioButton bbrasileiro;
+    @FXML
+    private RadioButton bamericano;
+    private static FXMLPrincipalController pc;
+    
+    protected static BooleanProperty v = new SimpleBooleanProperty();
+    
+    public void esporte(String esporte) {
+        v.setValue(false);
+        if (esporte.contains("basquete")) {
+
+            v.setValue(true);
+    
+        }
+        //seta visibilidade dos botoes
+        lbasquete.visibleProperty().bindBidirectional(v);
+        bbrasileiro.visibleProperty().bindBidirectional(v);
+        bamericano.visibleProperty().bindBidirectional(v);
+    }
     
     protected static StringProperty timea = new SimpleStringProperty();
     protected static StringProperty timeb = new SimpleStringProperty();
-    
-    private static FXMLPrincipalController pc;
     
     @FXML
     private void ContinuarButtonAction(Event e) {
@@ -79,6 +101,12 @@ public class FXMLSetDadosController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         
         pc = new FXMLPrincipalController();
+        
+        try {
+            esporte(pc.retornaEsporte());
+        } catch (Exception ex) {
+            System.out.println("ex");
+        }
 
         bContinuar.setOnMouseClicked((MouseEvent e) -> {
             ContinuarButtonAction(e);

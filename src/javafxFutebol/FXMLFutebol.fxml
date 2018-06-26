@@ -344,7 +344,7 @@
                         <Insets top="50.0" />
                      </GridPane.margin>
                   </Button>
-                  <Label fx:id="lperiodo" prefHeight="118.0" prefWidth="56.0" text="1" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="LEFT">
+                  <Label fx:id="lperiodo" prefHeight="118.0" prefWidth="64.0" text="1" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="LEFT">
                      <font>
                         <Font name="System Bold" size="80.0" />
                      </font>
@@ -438,7 +438,7 @@
                         <Font name="System Bold" size="80.0" />
                      </font>
                      <GridPane.margin>
-                        <Insets bottom="25.0" left="85.0" />
+                        <Insets bottom="25.0" left="90.0" />
                      </GridPane.margin>
                   </Label>
                </children>

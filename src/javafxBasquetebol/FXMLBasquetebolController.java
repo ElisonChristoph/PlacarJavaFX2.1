@@ -160,7 +160,7 @@ public class FXMLBasquetebolController implements Initializable {
     private Media mediasom;
 
     public boolean startcron = true;
-    public boolean stopc = true;
+    public boolean stopc = false;
     private int segundo = 60;
     private int minuto = 10;
 
@@ -474,19 +474,19 @@ public class FXMLBasquetebolController implements Initializable {
 
                     Platform.runLater(() -> {
 
-                        lPeriodo.setText(per + "°");
+                        lPeriodo.setText(per);
                     });
                 });
 
                 bmenosperiodo.addEventFilter(MouseEvent.MOUSE_CLICKED, (MouseEvent event) -> {
                     periodo = Integer.parseInt(lPeriodo.getText());
 
-                    if (periodo == 0) {
+                    if (periodo == 1) {
                         String per = Integer.toString(periodo);
 
                         Platform.runLater(() -> {
 
-                            lPeriodo.setText(per + "°");
+                            lPeriodo.setText(per);
                         });
                     } else {
                         periodo = (periodo - 1);
@@ -495,7 +495,7 @@ public class FXMLBasquetebolController implements Initializable {
 
                         Platform.runLater(() -> {
 
-                            lPeriodo.setText(per + "°");
+                            lPeriodo.setText(per);
                         });
                     }
                 });

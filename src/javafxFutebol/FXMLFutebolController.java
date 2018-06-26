@@ -641,7 +641,7 @@ public class FXMLFutebolController implements Initializable {
 
                     Platform.runLater(() -> {
 
-                        lperiodo.setText(per + "°");
+                        lperiodo.setText(per);
                     });
                 });
 
@@ -653,7 +653,7 @@ public class FXMLFutebolController implements Initializable {
 
                         Platform.runLater(() -> {
 
-                            lperiodo.setText(per + "°");
+                            lperiodo.setText(per);
                         });
                     } else {
                         periodo = (periodo - 1);
@@ -662,7 +662,7 @@ public class FXMLFutebolController implements Initializable {
 
                         Platform.runLater(() -> {
 
-                            lperiodo.setText(per + "°");
+                            lperiodo.setText(per);
                         });
                     }
                 });
@@ -681,6 +681,16 @@ public class FXMLFutebolController implements Initializable {
                     });
                 });
                 
+                bzeraracrescimos.addEventFilter(MouseEvent.MOUSE_CLICKED, event -> {
+                    
+                    vis.setValue(false);
+
+                    Platform.runLater(() -> {
+
+                        lacrescimo.setText("0");
+                        tfmaisacrescimo.setText("0");
+                    });
+                });
                 return null;
             }
         };
@@ -717,7 +727,6 @@ public class FXMLFutebolController implements Initializable {
         try {
             cliente(lc.retornaUser());
             tipouser = lc.retornaUser();
-            System.out.println(tipouser);
         } catch (Exception ex) {
             System.out.println("ex");
         }
