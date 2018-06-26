@@ -17,6 +17,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -54,6 +55,10 @@ public class FXMLFutebolController implements Initializable {
     private Label lCronometro;
     @FXML
     public ImageView ivFundo;
+    @FXML
+    public ImageView ivTimeDireita;
+    @FXML
+    public ImageView ivTimeEsquerda;
     @FXML
     private Label lfaltasD;
     @FXML
@@ -708,6 +713,13 @@ public class FXMLFutebolController implements Initializable {
     }
     // final do pega time
 
+    public void pegarBrasao(String brasaoesquerdo, String brasaodireito) {
+        Image besquerdo = new Image(brasaoesquerdo);
+        Image bdireito = new Image(brasaodireito);
+        this.ivTimeEsquerda.setImage(besquerdo);
+        this.ivTimeDireita.setImage(bdireito);
+
+    }
     //Start do placar
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -717,6 +729,7 @@ public class FXMLFutebolController implements Initializable {
         c = new FXMLSetDadosController();
         try {
             pegarTime(c.retornaTimeA(), c.retornaTimeB());
+            pegarBrasao(c.retornaBrasaoDireito(), c.retornaBrasaoEsquerdo());
         } catch (Exception ex) {
             System.out.println("Deu merda" + ex.getMessage());
         }

@@ -17,6 +17,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -650,6 +651,14 @@ public class FXMLBasquetebolController implements Initializable {
         this.tipoBasquete = tipo;
     }
 
+    public void pegarBrasao(String brasaoesquerdo, String brasaodireito) {
+        Image besquerdo = new Image(brasaoesquerdo);
+        Image bdireito = new Image(brasaodireito);
+        this.ivTimeA.setImage(besquerdo);
+        this.ivTimeB.setImage(bdireito);
+
+    }
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
@@ -659,6 +668,7 @@ public class FXMLBasquetebolController implements Initializable {
         try {
             pegarTime(c.retornaTimeA(), c.retornaTimeB());
             pegarTipoBasquete(c.retornatipoBasquete());
+            pegarBrasao(c.retornaBrasaoDireito(), c.retornaBrasaoEsquerdo());
         } catch (Exception ex) {
             System.out.println("Deu merda" + ex.getMessage());
         }

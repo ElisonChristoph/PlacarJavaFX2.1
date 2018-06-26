@@ -112,21 +112,15 @@
                         <Insets bottom="11.0" left="150.0" />
                      </GridPane.margin>
                   </Label>
-                  <ImageView fx:id="ivTimeEsquerda" fitHeight="111.0" fitWidth="144.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+                  <ImageView fx:id="ivTimeEsquerda" fitHeight="160.0" fitWidth="232.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
                      <GridPane.margin>
-                        <Insets right="20.0" />
+                        <Insets top="20.0" />
                      </GridPane.margin>
-                     <image>
-                        <Image url="@../imagens/Brazil.gif" />
-                     </image>
                   </ImageView>
-                  <ImageView fx:id="ivTimeDireita" fitHeight="111.0" fitWidth="144.0" layoutX="163.0" layoutY="151.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="1">
+                  <ImageView fx:id="ivTimeDireita" fitHeight="160.0" fitWidth="232.0" layoutX="163.0" layoutY="151.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="1">
                      <GridPane.margin>
-                        <Insets left="20.0" />
+                        <Insets top="20.0" />
                      </GridPane.margin>
-                     <image>
-                        <Image url="@../imagens/flagge-argentinien.gif" />
-                     </image>
                   </ImageView>
                   <Label fx:id="lCronometro" alignment="TOP_CENTER" contentDisplay="TOP" prefHeight="77.0" prefWidth="232.0" text="00:00" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="CENTER">
                      <font>
@@ -141,7 +135,7 @@
                         <Image url="@../imagens/200px-Red_card.png" />
                      </image>
                      <GridPane.margin>
-                        <Insets right="40.0" top="20.0" />
+                        <Insets right="40.0" top="50.0" />
                      </GridPane.margin>
                   </ImageView>
                   <ImageView fitHeight="80.0" fitWidth="76.0" layoutX="10.0" layoutY="341.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="TOP">
@@ -149,7 +143,7 @@
                         <Image url="@../imagens/200px-Yellow_card.svg.png" />
                      </image>
                      <GridPane.margin>
-                        <Insets right="160.0" top="20.0" />
+                        <Insets right="160.0" top="50.0" />
                      </GridPane.margin>
                   </ImageView>
                   <ImageView fitHeight="80.0" fitWidth="76.0" layoutX="100.0" layoutY="278.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="TOP">
@@ -157,7 +151,7 @@
                         <Image url="@../imagens/200px-Yellow_card.svg.png" />
                      </image>
                      <GridPane.margin>
-                        <Insets left="160.0" top="20.0" />
+                        <Insets left="160.0" top="50.0" />
                      </GridPane.margin>
                   </ImageView>
                   <ImageView fitHeight="80.0" fitWidth="76.0" layoutX="100.0" layoutY="371.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="TOP">
@@ -165,7 +159,7 @@
                         <Image url="@../imagens/200px-Red_card.png" />
                      </image>
                      <GridPane.margin>
-                        <Insets left="40.0" top="20.0" />
+                        <Insets left="40.0" top="50.0" />
                      </GridPane.margin>
                   </ImageView>
                   <Label fx:id="lamarelosA" text="0" textAlignment="CENTER" textFill="WHITE" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="TOP">
@@ -173,7 +167,7 @@
                         <Font name="System Bold" size="64.0" />
                      </font>
                      <GridPane.margin>
-                        <Insets right="120.0" top="13.0" />
+                        <Insets right="120.0" top="43.0" />
                      </GridPane.margin>
                   </Label>
                   <Label fx:id="lvermelhosA" layoutX="215.0" layoutY="258.0" text="0" textFill="WHITE" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="TOP">
@@ -181,7 +175,7 @@
                         <Font name="System Bold" size="64.0" />
                      </font>
                      <GridPane.margin>
-                        <Insets top="13.0" />
+                        <Insets top="43.0" />
                      </GridPane.margin>
                   </Label>
                   <Label fx:id="lvermelhosB" layoutX="135.0" layoutY="271.0" text="0" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="TOP">
@@ -189,7 +183,7 @@
                         <Font name="System Bold" size="64.0" />
                      </font>
                      <GridPane.margin>
-                        <Insets top="13.0" />
+                        <Insets top="43.0" />
                      </GridPane.margin>
                   </Label>
                   <Label fx:id="lamarelosB" layoutX="135.0" layoutY="364.0" text="0" textFill="WHITE" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="TOP">
@@ -197,7 +191,7 @@
                         <Font name="System Bold" size="64.0" />
                      </font>
                      <GridPane.margin>
-                        <Insets left="120.0" top="13.0" />
+                        <Insets left="120.0" top="43.0" />
                      </GridPane.margin>
                   </Label>
                   <Label fx:id="lPlacarB" alignment="CENTER" contentDisplay="CENTER" layoutX="241.0" layoutY="104.0" prefHeight="191.0" prefWidth="158.0" text="0" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="CENTER">
@@ -285,7 +279,7 @@
                         <Font name="Arial Bold" size="20.0" />
                      </font>
                      <GridPane.margin>
-                        <Insets right="50.0" top="50.0" />
+                        <Insets right="50.0" top="100.0" />
                      </GridPane.margin>
                   </Button>
                   <Button fx:id="bmenosvermelhoA" layoutX="609.0" layoutY="261.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="41.0" text="-" textAlignment="CENTER" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
@@ -293,7 +287,7 @@
                         <Font name="Arial Bold" size="20.0" />
                      </font>
                      <GridPane.margin>
-                        <Insets top="50.0" />
+                        <Insets top="100.0" />
                      </GridPane.margin>
                   </Button>
                   <Button fx:id="bmaisamareloA" layoutX="419.0" layoutY="291.0" mnemonicParsing="false" text="+" textAlignment="CENTER" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
@@ -301,7 +295,7 @@
                         <Font name="Arial Bold" size="20.0" />
                      </font>
                      <GridPane.margin>
-                        <Insets right="175.0" top="50.0" />
+                        <Insets right="175.0" top="100.0" />
                      </GridPane.margin>
                   </Button>
                   <Button fx:id="bmenosamareloA" layoutX="468.0" layoutY="291.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="41.0" text="-" textAlignment="CENTER" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
@@ -309,7 +303,7 @@
                         <Font name="Arial Bold" size="20.0" />
                      </font>
                      <GridPane.margin>
-                        <Insets right="125.0" top="50.0" />
+                        <Insets right="125.0" top="100.0" />
                      </GridPane.margin>
                   </Button>
                   <Button fx:id="bmenosamareloB" layoutX="468.0" layoutY="291.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="41.0" text="-" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="2">
@@ -317,7 +311,7 @@
                         <Font name="Arial Bold" size="20.0" />
                      </font>
                      <GridPane.margin>
-                        <Insets left="125.0" top="50.0" />
+                        <Insets left="125.0" top="100.0" />
                      </GridPane.margin>
                   </Button>
                   <Button fx:id="bmaisamareloB" layoutX="419.0" layoutY="291.0" mnemonicParsing="false" text="+" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="2">
@@ -325,7 +319,7 @@
                         <Font name="Arial Bold" size="20.0" />
                      </font>
                      <GridPane.margin>
-                        <Insets left="175.0" top="50.0" />
+                        <Insets left="175.0" top="100.0" />
                      </GridPane.margin>
                   </Button>
                   <Button fx:id="bmaisvermelhoB" layoutX="1133.0" layoutY="291.0" mnemonicParsing="false" text="+" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="2">
@@ -333,7 +327,7 @@
                         <Font name="Arial Bold" size="20.0" />
                      </font>
                      <GridPane.margin>
-                        <Insets left="50.0" top="50.0" />
+                        <Insets left="50.0" top="100.0" />
                      </GridPane.margin>
                   </Button>
                   <Button fx:id="bmenosvermelhoB" layoutX="1083.0" layoutY="291.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="41.0" text="-" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="2">
@@ -341,7 +335,7 @@
                         <Font name="Arial Bold" size="20.0" />
                      </font>
                      <GridPane.margin>
-                        <Insets top="50.0" />
+                        <Insets top="100.0" />
                      </GridPane.margin>
                   </Button>
                   <Label fx:id="lperiodo" prefHeight="118.0" prefWidth="64.0" text="1" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="LEFT">

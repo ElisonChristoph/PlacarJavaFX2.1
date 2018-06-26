@@ -3,7 +3,6 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
@@ -113,20 +112,14 @@
                         <Insets left="70.0" top="40.0" />
                      </GridPane.margin>
                   </Label>
-                  <ImageView fx:id="ivTimeDireita" fitHeight="189.0" fitWidth="197.0" pickOnBounds="true" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.valignment="TOP">
-                     <image>
-                        <Image url="@logos/logo-volei-bauru.jpg" />
-                     </image>
+                  <ImageView fx:id="ivTimeDireita" fitHeight="189.0" fitWidth="207.0" pickOnBounds="true" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.valignment="TOP">
                      <GridPane.margin>
-                        <Insets left="80.0" top="10.0" />
+                        <Insets left="40.0" top="10.0" />
                      </GridPane.margin>
                   </ImageView>
-                  <ImageView fx:id="ivTimeEsquerda" fitHeight="189.0" fitWidth="197.0" pickOnBounds="true" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
-                     <image>
-                        <Image url="@logos/sesi_logo.png" />
-                     </image>
+                  <ImageView fx:id="ivTimeEsquerda" fitHeight="189.0" fitWidth="207.0" pickOnBounds="true" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
                      <GridPane.margin>
-                        <Insets right="80.0" top="10.0" />
+                        <Insets right="40.0" top="10.0" />
                      </GridPane.margin>
                   </ImageView>
                   <Text fill="#ff6900" strokeType="OUTSIDE" strokeWidth="0.0" text="X" textAlignment="CENTER" wrappingWidth="137.6328125" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
@@ -297,6 +290,16 @@
                         <Insets top="70.0" />
                      </GridPane.margin>
                   </Button>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="203.0" layoutX="221.0" layoutY="233.0" stroke="#ff6900" strokeType="INSIDE" strokeWidth="7.0" width="221.0" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
+                     <GridPane.margin>
+                        <Insets right="33.0" top="3.0" />
+                     </GridPane.margin>
+                  </Rectangle>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="203.0" layoutX="10.0" layoutY="13.0" stroke="#ff6900" strokeType="INSIDE" strokeWidth="7.0" width="221.0" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.valignment="TOP">
+                     <GridPane.margin>
+                        <Insets left="33.0" top="3.0" />
+                     </GridPane.margin>
+                  </Rectangle>
                </children>
             </GridPane>
          </top>

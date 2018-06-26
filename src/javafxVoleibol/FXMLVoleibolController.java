@@ -16,6 +16,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -606,11 +607,7 @@ public class FXMLVoleibolController implements Initializable {
                     segundo = 0;
                     minuto = 0;
                     hora = 0;
-                    lCronometroVolei.setText("00:00:00");
-                    lPlacarDireita.setText("00");
-                    lPlacarEsquerda.setText("00");
-                    lfaltasdireita.setText("0");
-                    lfaltasesquerda.setText("0");
+                    
                 String pe;
                     String pd;
                     pontose = Integer.parseInt(lPlacarEsquerda.getText());
@@ -656,6 +653,11 @@ public class FXMLVoleibolController implements Initializable {
                         });
                         
                     }
+                    lCronometroVolei.setText("00:00:00");
+                    lPlacarDireita.setText("00");
+                    lPlacarEsquerda.setText("00");
+                    lfaltasdireita.setText("0");
+                    lfaltasesquerda.setText("0");
                 });
 
                 return null;
@@ -675,6 +677,14 @@ public class FXMLVoleibolController implements Initializable {
     }
     // final do pega time
 
+    public void pegarBrasao(String brasaoesquerdo, String brasaodireito) {
+        Image besquerdo = new Image(brasaoesquerdo);
+        Image bdireito = new Image(brasaodireito);
+        this.ivTimeEsquerda.setImage(besquerdo);
+        this.ivTimeDireita.setImage(bdireito);
+
+    }
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         //busca os dados setados na tela anterior
@@ -682,6 +692,7 @@ public class FXMLVoleibolController implements Initializable {
         c = new FXMLSetDadosController();
         try {
             pegarTime(c.retornaTimeA(), c.retornaTimeB());
+            pegarBrasao(c.retornaBrasaoDireito(), c.retornaBrasaoEsquerdo());
         } catch (Exception ex) {
             System.out.println("Deu merda" + ex.getMessage());
         }

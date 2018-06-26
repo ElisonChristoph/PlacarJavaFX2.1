@@ -61,6 +61,11 @@
                         <Insets bottom="350.0" />
                      </GridPane.margin>
                   </ImageView>
+                  <TextField fx:id="tflogin" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="253.0" GridPane.columnIndex="1" GridPane.halignment="LEFT">
+                     <GridPane.margin>
+                        <Insets bottom="95.0" left="220.0" />
+                     </GridPane.margin>
+                  </TextField>
                   <PasswordField fx:id="pfsenha" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="37.0" prefWidth="253.0" GridPane.columnIndex="1">
                      <GridPane.margin>
                         <Insets bottom="50.0" left="225.0" top="155.0" />
@@ -74,11 +79,6 @@
                         <Insets left="330.0" top="300.0" />
                      </GridPane.margin>
                   </Button>
-                  <TextField fx:id="tflogin" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="253.0" GridPane.columnIndex="1" GridPane.halignment="LEFT">
-                     <GridPane.margin>
-                        <Insets bottom="95.0" left="220.0" />
-                     </GridPane.margin>
-                  </TextField>
                   <Text fill="TRANSPARENT" stroke="WHITE" strokeType="OUTSIDE" strokeWidth="4.0" text="Login:" GridPane.columnIndex="1">
                      <font>
                         <Font name="System Bold" size="37.0" />
