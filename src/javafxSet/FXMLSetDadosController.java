@@ -13,6 +13,7 @@ import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.concurrent.Task;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -22,6 +23,7 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafxBasquetebol.JavaFXBasquetebol;
 import javafxFutebol.FXMLFutebolController;
@@ -53,7 +55,7 @@ public class FXMLSetDadosController implements Initializable {
     @FXML
     private TextField tfTimeDireita;
     @FXML
-    private Label lbasquete;
+    private Text lbasquete;
     @FXML
     private RadioButton bbrasileiro;
     @FXML
@@ -62,9 +64,9 @@ public class FXMLSetDadosController implements Initializable {
     
     protected static BooleanProperty v = new SimpleBooleanProperty();
     
-    public void esporte(String esporte) {
+    public void esporte(String esp) {
         v.setValue(false);
-        if (esporte.contains("basquete")) {
+        if (esp.contains("basquete")) {
 
             v.setValue(true);
     
@@ -77,11 +79,36 @@ public class FXMLSetDadosController implements Initializable {
     
     protected static StringProperty timea = new SimpleStringProperty();
     protected static StringProperty timeb = new SimpleStringProperty();
+    protected static StringProperty tipoBasquete = new SimpleStringProperty();
     
     @FXML
     private void ContinuarButtonAction(Event e) {
         timea.setValue(tfTimeEsquerda.getText());
         timeb.setValue(tfTimeDireita.getText());
+
+    }
+    public boolean stopc = false;
+    public void Padrao() {
+        Task t = new Task() {
+
+            @Override
+            protected Object call() throws Exception {
+                
+                while (stopc == false) {
+    
+       if(bbrasileiro.selectedProperty().get() == true){
+           bamericano.selectedProperty().setValue(false);
+           tipoBasquete.setValue("FIBA");
+       }
+       if(bamericano.selectedProperty().get() == true){
+           bbrasileiro.selectedProperty().setValue(false);
+           tipoBasquete.setValue("NBA");
+       }
+                }
+    return null;
+            }
+        };
+        new Thread(t).start();
 
     }
 
@@ -97,6 +124,10 @@ public class FXMLSetDadosController implements Initializable {
 
     }
     
+    public String retornatipoBasquete(){
+        return tipoBasquete.get();
+    }
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
@@ -108,6 +139,8 @@ public class FXMLSetDadosController implements Initializable {
             System.out.println("ex");
         }
 
+        Padrao();
+        
         bContinuar.setOnMouseClicked((MouseEvent e) -> {
             ContinuarButtonAction(e);
             

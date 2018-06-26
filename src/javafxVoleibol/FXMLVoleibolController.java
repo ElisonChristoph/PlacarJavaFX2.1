@@ -25,6 +25,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
+import javafx.scene.shape.Rectangle;
 import javafxSet.FXMLSetDadosController;
 import javafxlogin.FXMLLoginController;
 
@@ -110,6 +111,10 @@ public class FXMLVoleibolController implements Initializable {
     private Button bmenosset;
     @FXML
     private Button bfimdoset;
+    @FXML
+    public Rectangle rvideo;
+    @FXML
+    public Rectangle rvideo2;
     
     private int set = 0;
     private int setse = 0;
@@ -124,16 +129,19 @@ public class FXMLVoleibolController implements Initializable {
     private static FXMLLoginController lc;
 
     protected static BooleanProperty v = new SimpleBooleanProperty();
+    protected static BooleanProperty v2 = new SimpleBooleanProperty();
 
     //recebe o tipo de usuario
     //se for admin seta false na visible dos botoes abaixo
     //se for cliente seta true na visible doa botoes abaixo
     public void cliente(String user) {
         v.setValue(false);
-        System.out.println(user);
+        v2.setValue(true);
+        
         if (user.contains("cliente")) {
 
             v.setValue(true);
+            v2.setValue(false);
         }
         //seta visibilidade dos botoes
         bmaispontosesquerda.visibleProperty().bindBidirectional(v);
@@ -153,7 +161,8 @@ public class FXMLVoleibolController implements Initializable {
         bmaisset.visibleProperty().bindBidirectional(v);
         bmenosset.visibleProperty().bindBidirectional(v);
         bfimdoset.visibleProperty().bindBidirectional(v);
-
+        rvideo.visibleProperty().bindBidirectional(v2);
+        rvideo2.visibleProperty().bindBidirectional(v2);
     }
 
     private static File file = new File("src/videos/Propaganda.mp4");
@@ -376,17 +385,12 @@ public class FXMLVoleibolController implements Initializable {
                         faltase = (faltase + 1);
                         String spe = Integer.toString(faltase);
 
-                        if (faltase < 10) {
-                            Platform.runLater(() -> {
-
-                                lfaltasesquerda.setText("0" + spe);
-                            });
-                        } else {
+                        
                             Platform.runLater(() -> {
 
                                 lfaltasesquerda.setText(spe);
                             });
-                        }
+                        
                     }
                     //Soma uma falta para o time da direita
                     //ao pressionar D
@@ -395,17 +399,12 @@ public class FXMLVoleibolController implements Initializable {
                         faltasd = Integer.parseInt(lfaltasdireita.getText());
                         faltasd = (faltasd + 1);
                         String spd = Integer.toString(faltasd);
-                        if (faltasd < 10) {
-                            Platform.runLater(() -> {
-
-                                lfaltasdireita.setText("0" + spd);
-                            });
-                        } else {
+                        
                             Platform.runLater(() -> {
 
                                 lfaltasdireita.setText(spd);
                             });
-                        }
+                        
                     }
                 });
                 //Soma 1 falta ao time da esquerda
@@ -415,17 +414,12 @@ public class FXMLVoleibolController implements Initializable {
                     faltase = (faltase + 1);
 
                     String spe = Integer.toString(faltase);
-                    if (faltase < 10) {
-                        Platform.runLater(() -> {
-
-                            lfaltasesquerda.setText("0" + spe);
-                        });
-                    } else {
+                    
                         Platform.runLater(() -> {
 
                             lfaltasesquerda.setText(spe);
                         });
-                    }
+                    
                 });
 
                 //Soma 1 falta ao time da direita
@@ -435,17 +429,12 @@ public class FXMLVoleibolController implements Initializable {
                     faltasd = (faltasd + 1);
 
                     String spd = Integer.toString(faltasd);
-                    if (faltasd < 10) {
-                        Platform.runLater(() -> {
-
-                            lfaltasdireita.setText("0" + spd);
-                        });
-                    } else {
+                    
                         Platform.runLater(() -> {
 
                             lfaltasdireita.setText(spd);
                         });
-                    }
+                    
                 });
 
                 //Subtrai uma falta do time da esquerda
@@ -464,17 +453,12 @@ public class FXMLVoleibolController implements Initializable {
                         faltase = (faltase - 1);
 
                         String spe = Integer.toString(faltase);
-                        if (faltase < 10) {
-                            Platform.runLater(() -> {
-
-                                lfaltasesquerda.setText("0" + spe);
-                            });
-                        } else {
+                        
                             Platform.runLater(() -> {
 
                                 lfaltasesquerda.setText(spe);
                             });
-                        }
+                        
                     }
                 });
 
@@ -494,17 +478,12 @@ public class FXMLVoleibolController implements Initializable {
                         faltasd = (faltasd - 1);
 
                         String spd = Integer.toString(faltasd);
-                        if (faltasd < 10) {
-                            Platform.runLater(() -> {
-
-                                lfaltasdireita.setText("0" + spd);
-                            });
-                        } else {
+                        
                             Platform.runLater(() -> {
 
                                 lfaltasdireita.setText(spd);
                             });
-                        }
+                        
                     }
                 });
                 //final da configuração das faltas
@@ -624,29 +603,32 @@ public class FXMLVoleibolController implements Initializable {
                 bfimdoset.addEventFilter(MouseEvent.MOUSE_CLICKED, (MouseEvent event) -> {
                     
                     stopc = false;
+                    segundo = 0;
+                    minuto = 0;
+                    hora = 0;
                     lCronometroVolei.setText("00:00:00");
+                    lPlacarDireita.setText("00");
+                    lPlacarEsquerda.setText("00");
+                    lfaltasdireita.setText("0");
+                    lfaltasesquerda.setText("0");
                 String pe;
                     String pd;
                     pontose = Integer.parseInt(lPlacarEsquerda.getText());
-                    if(pontose < 10){
-                        pe = ("0" + lPlacarEsquerda.getText());
-                    }else{
+                    
                         pe = lPlacarEsquerda.getText();
-                    }
+                    
                     
                     pontosd = Integer.parseInt(lPlacarDireita.getText());
-                    if(pontosd < 10){
-                        pd = ("0" + lPlacarDireita.getText());
-                    }else{
+                    
                         pd = lPlacarDireita.getText();
-                    }
+                    
                     set = Integer.parseInt(lSet.getText());
                     
                     if(set == 1){  
                         
                         Platform.runLater(() -> {
 
-                            lPrimeiroSet.setText(pe + pd);
+                            lPrimeiroSet.setText(pe +" X "+ pd);
                         });
                         
                     }
@@ -654,7 +636,7 @@ public class FXMLVoleibolController implements Initializable {
                         
                         Platform.runLater(() -> {
 
-                            lSegundoSet.setText(pe + pd);
+                            lSegundoSet.setText(pe +" X "+ pd);
                         });
                         
                     }    
@@ -662,7 +644,7 @@ public class FXMLVoleibolController implements Initializable {
                         
                         Platform.runLater(() -> {
 
-                            lTerceiroSet.setText(pe + pd);
+                            lTerceiroSet.setText(pe +" X "+ pd);
                         });
                         
                     }
@@ -670,7 +652,7 @@ public class FXMLVoleibolController implements Initializable {
                         
                         Platform.runLater(() -> {
 
-                            lQuartoSet.setText(pe + pd);
+                            lQuartoSet.setText(pe +" X "+ pd);
                         });
                         
                     }
@@ -712,12 +694,14 @@ public class FXMLVoleibolController implements Initializable {
         } catch (Exception ex) {
             System.out.println("ex");
         }
-
+        
+        if(lc.retornaUser().equals("admin")){
         media = new Media(mediaurl);
         mediaplayer = new MediaPlayer(media);
         mvDireitaVolei.setMediaPlayer(mediaplayer);
         mvEsquerdaVolei.setMediaPlayer(mediaplayer);
         mediaplayer.play();
+        }
         iniciaCronometro();
         PlacarFaltaseSet();
         SetseFimdoset();

@@ -19,7 +19,7 @@
    <children>
       <BorderPane fx:id="bpVolei" prefHeight="718.0" prefWidth="932.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
-            <GridPane prefHeight="396.0" prefWidth="932.0" BorderPane.alignment="CENTER">
+            <GridPane prefHeight="414.0" prefWidth="1108.0" BorderPane.alignment="CENTER">
               <columnConstraints>
                 <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="212.0" />
                   <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="600.0" minWidth="10.0" prefWidth="600.0" />
@@ -31,6 +31,11 @@
                   <RowConstraints maxHeight="199.0" minHeight="10.0" prefHeight="186.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="154.0" layoutX="265.0" layoutY="11.0" stroke="#ff6900" strokeType="INSIDE" strokeWidth="7.0" width="559.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                     <GridPane.margin>
+                        <Insets bottom="35.0" />
+                     </GridPane.margin>
+                  </Rectangle>
                   <Label fx:id="lCronometroVolei" prefHeight="190.0" prefWidth="560.0" text="00:00:00" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                      <font>
                         <Font name="System Bold" size="140.0" />
@@ -60,7 +65,7 @@
                         <Insets bottom="40.0" right="30.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label fx:id="lTimeEsquerda" alignment="CENTER" contentDisplay="CENTER" prefHeight="90.0" prefWidth="279.0" text="Time A" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                  <Label fx:id="lTimeEsquerda" alignment="CENTER" contentDisplay="CENTER" prefHeight="90.0" prefWidth="296.0" text="Time A" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                      <font>
                         <Font name="System Bold" size="62.0" />
                      </font>
@@ -68,7 +73,7 @@
                         <Insets left="-40.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label fx:id="lTimeDireita" alignment="CENTER" contentDisplay="RIGHT" layoutX="225.0" layoutY="150.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="90.0" prefWidth="276.0" text="Time B" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                  <Label fx:id="lTimeDireita" alignment="CENTER" contentDisplay="RIGHT" layoutX="225.0" layoutY="150.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="90.0" prefWidth="295.0" text="Time B" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                      <font>
                         <Font name="System Bold" size="62.0" />
                      </font>
@@ -76,7 +81,7 @@
                         <Insets right="-40.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label text="Sets" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="TOP">
+                  <Label text="Sets" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="TOP">
                      <font>
                         <Font name="System Bold" size="50.0" />
                      </font>
@@ -84,7 +89,7 @@
                         <Insets right="70.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label layoutX="42.0" layoutY="195.0" text="Sets" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="TOP">
+                  <Label layoutX="42.0" layoutY="195.0" text="Sets" textFill="WHITE" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="TOP">
                      <font>
                         <Font name="System Bold" size="50.0" />
                      </font>
@@ -196,52 +201,52 @@
                         <Insets right="180.0" top="120.0" />
                      </GridPane.margin>
                   </Button>
-                  <Label fx:id="lfaltasesquerda" layoutX="58.0" layoutY="260.0" text="0" textFill="#ff6e00" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="TOP">
+                  <Label fx:id="lfaltasesquerda" alignment="CENTER" layoutX="58.0" layoutY="260.0" prefHeight="176.0" prefWidth="121.0" text="0" textFill="#ff6e00" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="TOP">
                      <font>
                         <Font name="System Bold" size="120.0" />
                      </font>
                      <GridPane.margin>
-                        <Insets right="20.0" top="40.0" />
+                        <Insets top="15.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label layoutX="45.0" layoutY="220.0" text="Faltas" textAlignment="CENTER" wrapText="true" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
+                  <Label layoutX="45.0" layoutY="220.0" text="Faltas" textAlignment="CENTER" textFill="WHITE" wrapText="true" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
                      <font>
                         <Font name="System Bold" size="42.0" />
                      </font>
                      <GridPane.margin>
-                        <Insets bottom="140.0" />
+                        <Insets bottom="180.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label layoutX="162.0" layoutY="220.0" text="/Set" textAlignment="CENTER" wrapText="true" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="TOP">
+                  <Label layoutX="162.0" layoutY="220.0" text="/Set" textAlignment="CENTER" textFill="#fcfcfc" wrapText="true" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="TOP">
                      <font>
                         <Font name="System Bold" size="42.0" />
                      </font>
                      <GridPane.margin>
-                        <Insets right="20.0" top="30.0" />
+                        <Insets right="20.0" top="8.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label layoutX="162.0" layoutY="212.0" text="Faltas" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="2">
+                  <Label layoutX="162.0" layoutY="212.0" text="Faltas" textAlignment="CENTER" textFill="WHITE" wrapText="true" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="2">
                      <font>
                         <Font name="System Bold" size="42.0" />
                      </font>
                      <GridPane.margin>
-                        <Insets bottom="140.0" />
+                        <Insets bottom="180.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label layoutX="174.0" layoutY="250.0" text="/Set" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="TOP">
+                  <Label layoutX="174.0" layoutY="250.0" text="/Set" textAlignment="CENTER" textFill="WHITE" wrapText="true" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="TOP">
                      <font>
                         <Font name="System Bold" size="42.0" />
                      </font>
                      <GridPane.margin>
-                        <Insets left="20.0" top="30.0" />
+                        <Insets left="20.0" top="8.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label fx:id="lfaltasdireita" layoutX="186.0" layoutY="260.0" text="0" textFill="#ff6e00" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="TOP">
+                  <Label fx:id="lfaltasdireita" alignment="CENTER" layoutX="186.0" layoutY="260.0" prefHeight="176.0" prefWidth="121.0" text="0" textFill="#ff6e00" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="TOP">
                      <font>
                         <Font name="System Bold" size="120.0" />
                      </font>
                      <GridPane.margin>
-                        <Insets left="20.0" top="40.0" />
+                        <Insets top="15.0" />
                      </GridPane.margin>
                   </Label>
                   <Button fx:id="bmaisfaltaesquerda" layoutX="27.0" layoutY="305.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="42.0" prefWidth="41.0" text="+" textAlignment="CENTER" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
@@ -249,7 +254,7 @@
                         <Font name="System Bold" size="19.0" />
                      </font>
                      <GridPane.margin>
-                        <Insets right="90.0" top="25.0" />
+                        <Insets right="20.0" top="145.0" />
                      </GridPane.margin>
                   </Button>
                   <Button fx:id="bmenosfaltaesquerda" layoutX="27.0" layoutY="352.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="42.0" prefWidth="41.0" text="-" textAlignment="CENTER" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
@@ -257,7 +262,7 @@
                         <Font name="Arial Bold" size="19.0" />
                      </font>
                      <GridPane.margin>
-                        <Insets right="90.0" top="120.0" />
+                        <Insets right="65.0" top="145.0" />
                      </GridPane.margin>
                   </Button>
                   <Button fx:id="bmaisfaltadireita" layoutX="1061.0" layoutY="305.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="42.0" prefWidth="41.0" text="+" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="2">
@@ -265,7 +270,7 @@
                         <Font name="System Bold" size="19.0" />
                      </font>
                      <GridPane.margin>
-                        <Insets left="90.0" top="25.0" />
+                        <Insets left="20.0" top="145.0" />
                      </GridPane.margin>
                   </Button>
                   <Button fx:id="bmenosfaltadireita" layoutX="133.0" layoutY="352.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="42.0" prefWidth="41.0" text="-" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="2">
@@ -273,7 +278,7 @@
                         <Font name="Arial Bold" size="19.0" />
                      </font>
                      <GridPane.margin>
-                        <Insets left="90.0" top="120.0" />
+                        <Insets left="65.0" top="145.0" />
                      </GridPane.margin>
                   </Button>
                   <Button fx:id="bstartcron" mnemonicParsing="false" prefHeight="37.0" prefWidth="89.0" text="Start" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="CENTER">
@@ -381,22 +386,22 @@
                   </Text>
                   <MediaView fx:id="mvEsquerdaVolei" fitHeight="250.0" fitWidth="400.0" preserveRatio="false" GridPane.halignment="RIGHT" GridPane.valignment="CENTER">
                      <GridPane.margin>
-                        <Insets right="30.0" />
+                        <Insets right="30.0" top="30.0" />
                      </GridPane.margin>
                   </MediaView>
                   <MediaView fx:id="mvDireitaVolei" fitHeight="250.0" fitWidth="400.0" layoutX="198.0" layoutY="16.0" preserveRatio="false" GridPane.columnIndex="2">
                      <GridPane.margin>
-                        <Insets left="30.0" />
+                        <Insets left="30.0" top="30.0" />
                      </GridPane.margin>
                   </MediaView>
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="264.0" stroke="#ff6900" strokeType="INSIDE" strokeWidth="7.0" width="414.0" GridPane.columnIndex="2">
+                  <Rectangle fx:id="rvideo2" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="264.0" stroke="#ff6900" strokeType="INSIDE" strokeWidth="7.0" width="414.0" GridPane.columnIndex="2" GridPane.halignment="LEFT">
                      <GridPane.margin>
-                        <Insets left="23.0" />
+                        <Insets left="23.0" top="30.0" />
                      </GridPane.margin>
                   </Rectangle>
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="264.0" layoutX="664.0" layoutY="23.0" stroke="#ff6900" strokeType="INSIDE" strokeWidth="7.0" width="414.0" GridPane.halignment="RIGHT" GridPane.valignment="CENTER">
+                  <Rectangle fx:id="rvideo" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="264.0" layoutX="664.0" layoutY="23.0" stroke="#ff6900" strokeType="INSIDE" strokeWidth="7.0" width="414.0" GridPane.halignment="RIGHT" GridPane.valignment="CENTER">
                      <GridPane.margin>
-                        <Insets right="23.0" />
+                        <Insets right="23.0" top="30.0" />
                      </GridPane.margin>
                   </Rectangle>
                   <Button fx:id="bmaisset" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="42.0" prefWidth="41.0" text="+" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.valignment="BOTTOM">

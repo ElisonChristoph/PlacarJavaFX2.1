@@ -146,6 +146,8 @@ public class FXMLBasquetebolController implements Initializable {
     //variaveis das faltas
     private int faltase = 0;
     private int faltasd = 0;
+    
+    String tipoBasquete;
 
     //Arquivo Propaganda
     private static File video = new File("src/videos/Propaganda.mp4");
@@ -154,18 +156,19 @@ public class FXMLBasquetebolController implements Initializable {
     private Media media;
 
     //Arquivo Som
-    private static File somshotclock = new File("src/videos/musica.mp3");
+    private static File somshotclock = new File("src/videos/apito.wav");
     private static final String somurl = somshotclock.toURI().toString();
     private MediaPlayer mediaplayershotclock;
     private Media mediasom;
 
     public boolean startcron = true;
     public boolean stopc = false;
-    private int segundo = 60;
-    private int minuto = 10;
+    private int segundo = 59;
+    private int minutoNBA = 11;
 
-    //Cronometro
-    public void iniciaCronometro() {
+    //Cronometro NBA
+    public void CronometroNBA() {
+        lCronometroB.setText("12:00");
         Task t = new Task() {
 
             @Override
@@ -183,20 +186,83 @@ public class FXMLBasquetebolController implements Initializable {
                     bstopcron.addEventFilter(MouseEvent.MOUSE_CLICKED, event -> {
                         stopc = false;
                     });
-
-                    segundo--;
-
+                    
+                        segundo--;
+                    
                     if (segundo == 00) {
-                        minuto--;
+                        minutoNBA--;
                         segundo = 59;
                     }
 
-//                    if (minuto == 60) {
-//
-//                        minuto = 0;
-//                    }
-                    String min = minuto <= 9 ? "0" + minuto : minuto + "";
+                    if (minutoNBA == 00) {
+                        stopc = false;
+                      mediasom = new Media(somurl);
+                            mediaplayer = new MediaPlayer(mediasom);
+                            mediaplayer.play();
+                        minutoNBA = 11;
+                        segundo = 59;
+                    }
+                    String min = minutoNBA <= 9 ? "0" + minutoNBA : minutoNBA + "";
                     String seg = segundo <= 9 ? "0" + segundo : segundo + "";
+                    
+
+                    Platform.runLater(() -> {
+
+                        lCronometroB.setText(min + ":" + seg);
+                    });
+                    Thread.sleep(1000);
+
+                }
+                }
+                return null;
+            
+            }
+        };
+        new Thread(t).start();
+
+    }
+    
+    //Cronometro FIBA
+    private int minutoFIBA = 9;
+    public void CronometroFIBA() {
+        lCronometroB.setText("10:00");
+        Task t = new Task() {
+
+            @Override
+            protected Object call() throws Exception {
+                while(startcron == true){
+                
+                while (stopc == false) {
+                        bplaycron.addEventFilter(MouseEvent.MOUSE_CLICKED, event -> {
+                            stopc = true;
+                        });
+                    }
+                
+                while (stopc == true) {
+
+                    bstopcron.addEventFilter(MouseEvent.MOUSE_CLICKED, event -> {
+                        stopc = false;
+                    });
+                    
+                        segundo--;
+                    
+                    if (segundo == 00) {
+                        minutoFIBA--;
+                        segundo = 59;
+                    }
+
+                    if (minutoFIBA == 00){
+                       stopc = false;
+                      mediasom = new Media(somurl);
+                            mediaplayer = new MediaPlayer(mediasom);
+                            mediaplayer.play();
+                            minutoFIBA = 9;
+                            segundo = 59;
+                        
+                    }
+                    String min = minutoFIBA <= 9 ? "0" + minutoFIBA : minutoFIBA + "";
+                    String seg = segundo <= 9 ? "0" + segundo : segundo + "";
+                    
 
                     Platform.runLater(() -> {
 
@@ -285,11 +351,18 @@ public class FXMLBasquetebolController implements Initializable {
                     pontose = (pontose + pontosmais);
                     pontosmais = 0;
                     String spe = Integer.toString(pontose);
-
+                    
+                    if(pontose < 10){
                     Platform.runLater(() -> {
 
-                        lPontosA.setText(spe);
+                        lPontosA.setText("0" + spe);
                     });
+                    }else{
+                       Platform.runLater(() -> {
+
+                        lPontosA.setText(spe);
+                    }); 
+                    }
                 });
 
                 //Soma os pontos do textfield ao placar do time da esquerda
@@ -300,11 +373,17 @@ public class FXMLBasquetebolController implements Initializable {
                     pontosd = (pontosd + pontosmais);
                     pontosmais = 0;
                     String spd = Integer.toString(pontosd);
-
+                    if(pontosd < 10){
                     Platform.runLater(() -> {
 
-                        lPontosB.setText(spd);
+                        lPontosB.setText("0" + spd);
                     });
+                    }else{
+                       Platform.runLater(() -> {
+
+                        lPontosB.setText(spd);
+                    }); 
+                    }
                 });
 
                 //Subtrai os pontos do textfield, do placar do time da esquerda
@@ -323,11 +402,14 @@ public class FXMLBasquetebolController implements Initializable {
                         pontose = (pontose - pontosmenos);
 
                         String spe = Integer.toString(pontose);
-
+                        if(pontose < 10){
                         Platform.runLater(() -> {
 
-                            lPontosA.setText(spe);
+                            lPontosA.setText("0" + spe);
                         });
+                        }else{
+                            lPontosA.setText("0" + spe);
+                        }
                         pontosmenos = 0;
                     }
                 });
@@ -348,11 +430,17 @@ public class FXMLBasquetebolController implements Initializable {
                         pontosd = (pontosd - pontosmenos);
 
                         String spd = Integer.toString(pontosd);
-
+                        if(pontosd < 10){
                         Platform.runLater(() -> {
 
-                            lPontosB.setText(spd);
+                            lPontosB.setText("0" + spd);
                         });
+                        }else{
+                           Platform.runLater(() -> {
+
+                            lPontosB.setText(spd);
+                        }); 
+                        }
                         pontosmenos = 0;
                     }
                 });
@@ -516,6 +604,10 @@ public class FXMLBasquetebolController implements Initializable {
 
     }
     // final do pega time
+    
+    public void pegarTipoBasquete(String tipo){
+        this.tipoBasquete = tipo;
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -541,7 +633,13 @@ public class FXMLBasquetebolController implements Initializable {
         mediaplayer = new MediaPlayer(media);
         mvBasquete.setMediaPlayer(mediaplayer);
         mediaplayer.play();
-        iniciaCronometro();
+        
+        if(tipoBasquete.equals("FIBA")){
+        CronometroFIBA();
+        }
+        if(tipoBasquete.equals("NBA")){
+            CronometroNBA();
+        }
         shotclock();
         PlacarFaltasEPeriodo();
     }

@@ -31,9 +31,9 @@
                 <RowConstraints maxHeight="203.0" minHeight="0.0" prefHeight="152.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label fx:id="lTimeB" alignment="CENTER" prefHeight="59.0" prefWidth="289.0" text="Time B" textFill="WHITE" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.valignment="TOP">
+                  <Label fx:id="lTimeB" alignment="CENTER" prefHeight="71.0" prefWidth="289.0" text="Time B" textFill="WHITE" underline="true" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.valignment="TOP">
                      <font>
-                        <Font name="System Bold" size="41.0" />
+                        <Font name="System Bold" size="49.0" />
                      </font>
                      <GridPane.margin>
                         <Insets left="-50.0" />
@@ -88,9 +88,9 @@
                         <Insets right="20.0" />
                      </padding>
                   </Label>
-                  <Label fx:id="lTimeA" alignment="CENTER" layoutX="594.0" layoutY="92.0" prefHeight="59.0" prefWidth="288.0" text="Time A" textFill="WHITE" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
+                  <Label fx:id="lTimeA" alignment="CENTER" layoutX="594.0" layoutY="92.0" prefHeight="69.0" prefWidth="291.0" text="Time A" textFill="WHITE" underline="true" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
                      <font>
-                        <Font name="System Bold" size="41.0" />
+                        <Font name="System Bold" size="49.0" />
                      </font>
                      <GridPane.margin>
                         <Insets right="-50.0" />
@@ -243,14 +243,14 @@
                   <RowConstraints maxHeight="212.0" minHeight="10.0" prefHeight="193.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="TRANSPARENT" height="115.0" stroke="#ff641f" strokeType="INSIDE" strokeWidth="7.0" width="404.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="TOP">
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="TRANSPARENT" height="128.0" stroke="#ff641f" strokeType="INSIDE" strokeWidth="7.0" width="454.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="TOP">
                      <GridPane.margin>
                         <Insets top="10.0" />
                      </GridPane.margin>
                   </Rectangle>
-                  <Label fx:id="lCronometroB" alignment="TOP_CENTER" contentDisplay="TOP" maxHeight="125.0" maxWidth="401.0" minHeight="25.0" minWidth="134.0" prefHeight="125.0" prefWidth="401.0" text="00:00" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="TOP">
+                  <Label fx:id="lCronometroB" alignment="TOP_CENTER" contentDisplay="TOP" maxHeight="135.0" maxWidth="628.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="133.0" prefWidth="628.0" text="00:00" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="TOP">
                      <font>
-                        <Font name="System Bold" size="130.0" />
+                        <Font name="System Bold" size="150.0" />
                      </font>
                      <GridPane.margin>
                         <Insets top="5.0" />
@@ -259,7 +259,7 @@
                         <Insets />
                      </opaqueInsets>
                      <padding>
-                        <Insets top="-33.0" />
+                        <Insets top="-41.0" />
                      </padding>
                   </Label>
                   <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Periodo" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="TOP">
@@ -267,15 +267,15 @@
                         <Font name="System Bold" size="33.0" />
                      </font>
                      <GridPane.margin>
-                        <Insets left="155.0" />
+                        <Insets left="155.0" top="10.0" />
                      </GridPane.margin>
                   </Text>
                   <Label fx:id="lPeriodo" prefHeight="123.0" prefWidth="63.0" text="1" textFill="#ff641f" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="TOP">
                      <font>
-                        <Font name="System Bold" size="84.0" />
+                        <Font name="System Bold" size="94.0" />
                      </font>
                      <GridPane.margin>
-                        <Insets left="180.0" top="20.0" />
+                        <Insets left="180.0" top="30.0" />
                      </GridPane.margin>
                   </Label>
                   <ImageView fitHeight="184.0" fitWidth="200.0" pickOnBounds="true" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
@@ -296,10 +296,10 @@
                   </ImageView>
                   <Label fx:id="lShotClock" text="24" textFill="#ff641f" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="TOP">
                      <font>
-                        <Font name="System Bold" size="84.0" />
+                        <Font name="System Bold" size="94.0" />
                      </font>
                      <GridPane.margin>
-                        <Insets right="185.0" top="20.0" />
+                        <Insets right="185.0" top="30.0" />
                      </GridPane.margin>
                   </Label>
                   <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Shot Clock" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="TOP">
@@ -307,15 +307,15 @@
                         <Font name="System Bold" size="33.0" />
                      </font>
                      <GridPane.margin>
-                        <Insets right="155.0" />
+                        <Insets right="155.0" top="10.0" />
                      </GridPane.margin>
                   </Text>
-                  <Button fx:id="bmaisperiodo" mnemonicParsing="false" prefHeight="19.0" prefWidth="18.0" text="+" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <Button fx:id="bmaisperiodo" mnemonicParsing="false" prefHeight="19.0" prefWidth="18.0" text="+" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>
                      <GridPane.margin>
-                        <Insets bottom="80.0" left="150.0" />
+                        <Insets bottom="70.0" left="150.0" top="30.0" />
                      </GridPane.margin>
                   </Button>
                   <Button fx:id="bmenosperiodo" layoutX="372.0" layoutY="171.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="31.0" text="-" GridPane.columnIndex="1" GridPane.rowIndex="1">
@@ -323,7 +323,7 @@
                         <Font name="System Bold" size="15.0" />
                      </font>
                      <GridPane.margin>
-                        <Insets left="150.0" />
+                        <Insets left="150.0" top="30.0" />
                      </GridPane.margin>
                   </Button>
                   <Button fx:id="bstopshot" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="33.0" prefWidth="65.0" text="Stop" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
@@ -331,7 +331,7 @@
                         <Font name="System Bold" size="17.0" />
                      </font>
                      <GridPane.margin>
-                        <Insets bottom="5.0" right="120.0" />
+                        <Insets bottom="5.0" right="120.0" top="40.0" />
                      </GridPane.margin>
                   </Button>
                   <Button fx:id="bplayshot" contentDisplay="CENTER" layoutX="222.0" layoutY="208.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="33.0" prefWidth="64.0" text="Play" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
@@ -339,7 +339,7 @@
                         <Font name="System Bold" size="17.0" />
                      </font>
                      <GridPane.margin>
-                        <Insets bottom="80.0" right="120.0" />
+                        <Insets bottom="80.0" right="120.0" top="35.0" />
                      </GridPane.margin>
                   </Button>
                   <Button fx:id="bplaycron" contentDisplay="CENTER" layoutX="702.0" layoutY="170.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="33.0" prefWidth="64.0" text="Play" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="RIGHT">
@@ -347,7 +347,7 @@
                         <Font name="System Bold" size="17.0" />
                      </font>
                      <GridPane.margin>
-                        <Insets bottom="30.0" right="50.0" />
+                        <Insets right="20.0" top="40.0" />
                      </GridPane.margin>
                   </Button>
                   <Button fx:id="bstopcron" layoutX="701.0" layoutY="208.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="33.0" prefWidth="65.0" text="Stop" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="RIGHT">
@@ -355,7 +355,7 @@
                         <Font name="System Bold" size="17.0" />
                      </font>
                      <GridPane.margin>
-                        <Insets right="50.0" top="50.0" />
+                        <Insets left="50.0" right="20.0" top="120.0" />
                      </GridPane.margin>
                   </Button>
                   <Label fx:id="lPeriodo1" layoutX="562.0" layoutY="150.0" prefHeight="92.0" prefWidth="42.0" text="º" textFill="#ff641f" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="TOP">
@@ -363,7 +363,7 @@
                         <Font name="System Bold" size="84.0" />
                      </font>
                      <GridPane.margin>
-                        <Insets left="235.0" top="18.0" />
+                        <Insets left="235.0" top="34.0" />
                      </GridPane.margin>
                   </Label>
                </children>
