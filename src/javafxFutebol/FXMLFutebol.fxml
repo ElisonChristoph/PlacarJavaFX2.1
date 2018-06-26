@@ -85,7 +85,7 @@
                         <Insets left="10.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label fx:id="lTimeEsquerda" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="497.0" layoutY="54.0" prefHeight="83.0" prefWidth="302.0" text="Time A" textAlignment="RIGHT" textFill="WHITE" GridPane.halignment="RIGHT">
+                  <Label fx:id="lTimeEsquerda" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="497.0" layoutY="54.0" prefHeight="93.0" prefWidth="445.0" text="Time A" textAlignment="RIGHT" textFill="WHITE" GridPane.halignment="RIGHT">
                      <font>
                         <Font name="System Bold" size="64.0" />
                      </font>
