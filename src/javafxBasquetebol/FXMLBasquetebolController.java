@@ -163,7 +163,7 @@ public class FXMLBasquetebolController implements Initializable {
 
     public boolean startcron = true;
     public boolean stopc = false;
-    private int segundo = 59;
+    private int segundo = 60;
     private int minutoNBA = 11;
 
     //Cronometro NBA
@@ -200,7 +200,7 @@ public class FXMLBasquetebolController implements Initializable {
                             mediaplayer = new MediaPlayer(mediasom);
                             mediaplayer.play();
                         minutoNBA = 11;
-                        segundo = 59;
+                        segundo = 60;
                     }
                     String min = minutoNBA <= 9 ? "0" + minutoNBA : minutoNBA + "";
                     String seg = segundo <= 9 ? "0" + segundo : segundo + "";
@@ -257,7 +257,7 @@ public class FXMLBasquetebolController implements Initializable {
                             mediaplayer = new MediaPlayer(mediasom);
                             mediaplayer.play();
                             minutoFIBA = 9;
-                            segundo = 59;
+                            segundo = 60;
                         
                     }
                     String min = minutoFIBA <= 9 ? "0" + minutoFIBA : minutoFIBA + "";
@@ -617,6 +617,7 @@ public class FXMLBasquetebolController implements Initializable {
         c = new FXMLSetDadosController();
         try {
             pegarTime(c.retornaTimeA(), c.retornaTimeB());
+            pegarTipoBasquete(c.retornatipoBasquete());
         } catch (Exception ex) {
             System.out.println("Deu merda" + ex.getMessage());
         }
@@ -634,10 +635,10 @@ public class FXMLBasquetebolController implements Initializable {
         mvBasquete.setMediaPlayer(mediaplayer);
         mediaplayer.play();
         
-        if(tipoBasquete.equals("FIBA")){
+        if(tipoBasquete.contains("FIBA")){
         CronometroFIBA();
         }
-        if(tipoBasquete.equals("NBA")){
+        if(tipoBasquete.contains("NBA")){
             CronometroNBA();
         }
         shotclock();
