@@ -151,7 +151,7 @@ public class FXMLBasquetebolController implements Initializable {
     String tipoBasquete;
 
     //Arquivo Propaganda
-    private static File video = new File("src/videos/Propaganda.mp4");
+    private static File video;
     private static final String videourl = video.toURI().toString();
     private MediaPlayer mediaplayer;
     private Media media;
@@ -659,6 +659,12 @@ public class FXMLBasquetebolController implements Initializable {
 
     }
     
+    public void pegarVideo(String URLvideo) {
+        
+        video = new File(URLvideo);
+
+    }
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
@@ -669,6 +675,7 @@ public class FXMLBasquetebolController implements Initializable {
             pegarTime(c.retornaTimeA(), c.retornaTimeB());
             pegarTipoBasquete(c.retornatipoBasquete());
             pegarBrasao(c.retornaBrasaoDireito(), c.retornaBrasaoEsquerdo());
+            pegarVideo(c.retornaVideo());
         } catch (Exception ex) {
             System.out.println("Deu merda" + ex.getMessage());
         }

@@ -166,7 +166,7 @@ public class FXMLVoleibolController implements Initializable {
         rvideo2.visibleProperty().bindBidirectional(v2);
     }
 
-    private static File file = new File("src/videos/Propaganda.mp4");
+    private static File file;
     private static final String mediaurl = file.toURI().toString();
     private MediaPlayer mediaplayer;
     private Media media;
@@ -685,6 +685,12 @@ public class FXMLVoleibolController implements Initializable {
 
     }
     
+    public void pegarVideo(String URLvideo) {
+        
+        file = new File(URLvideo);
+
+    }
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         //busca os dados setados na tela anterior
@@ -693,6 +699,7 @@ public class FXMLVoleibolController implements Initializable {
         try {
             pegarTime(c.retornaTimeA(), c.retornaTimeB());
             pegarBrasao(c.retornaBrasaoDireito(), c.retornaBrasaoEsquerdo());
+            pegarVideo(c.retornaVideo());
         } catch (Exception ex) {
             System.out.println("Deu merda" + ex.getMessage());
         }

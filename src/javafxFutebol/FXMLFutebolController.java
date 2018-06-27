@@ -191,7 +191,7 @@ public class FXMLFutebolController implements Initializable {
     }
 
     //configuração multimedia {
-    private static File file = new File("src/videos/Propaganda.mp4");
+    private static File file;
     private static final String mediaurl = file.toURI().toString();
     private MediaPlayer mediaplayer;
     private Media media;
@@ -720,6 +720,13 @@ public class FXMLFutebolController implements Initializable {
         this.ivTimeDireita.setImage(bdireito);
 
     }
+    
+    public void pegarVideo(String URLvideo) {
+        
+        file = new File(URLvideo);
+
+    }
+    
     //Start do placar
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -730,6 +737,7 @@ public class FXMLFutebolController implements Initializable {
         try {
             pegarTime(c.retornaTimeA(), c.retornaTimeB());
             pegarBrasao(c.retornaBrasaoDireito(), c.retornaBrasaoEsquerdo());
+            pegarVideo(c.retornaVideo());
         } catch (Exception ex) {
             System.out.println("Deu merda" + ex.getMessage());
         }

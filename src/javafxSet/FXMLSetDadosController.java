@@ -53,6 +53,8 @@ public class FXMLSetDadosController implements Initializable {
     @FXML
     private Button bVoltar;
     @FXML
+    private Button bBuscarVideo;
+    @FXML
     private Button bContinuar;
     @FXML
     private ImageView ivDireito;
@@ -108,6 +110,25 @@ public class FXMLSetDadosController implements Initializable {
                 Image im = new Image(file.toURI().toString());
                 brasaoEsquerdo.setValue(file.toURI().toString());
                 ivEsquerdo.setImage(im);
+            }    
+        });
+    }
+    protected static StringProperty video = new SimpleStringProperty();
+    
+    public void Video() {
+        bBuscarVideo.addEventFilter(MouseEvent.MOUSE_CLICKED, event -> {
+            //Criação do FileChooser
+            FileChooser.ExtensionFilter videoFilter = new FileChooser.ExtensionFilter("Video Files", "*.mp4");
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.getExtensionFilters().add(videoFilter);
+            fileChooser.setTitle("Selecionar Video");
+                       
+            //Agora, carregamos a imagem selecionada num file
+            File file = fileChooser.showOpenDialog(new Stage());
+            if(file != null){
+                
+                video.setValue(file.toURI().toString());
+                
             }    
         });
     }
@@ -186,6 +207,10 @@ public class FXMLSetDadosController implements Initializable {
     public String retornaBrasaoDireito() {
         return brasaoDireito.get();
     }
+    
+    public String retornaVideo(){
+        return video.get();
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -240,6 +265,7 @@ public class FXMLSetDadosController implements Initializable {
             }
         });
         Imagem();
+        Video();
 
     }
 
